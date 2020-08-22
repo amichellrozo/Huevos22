@@ -1,4 +1,3 @@
-
 package huevos22;
 
 import java.sql.Connection;
@@ -231,7 +230,58 @@ public class BD_huevos {
         }
         return modelo;
     }
+//////
 
+    public DefaultTableModel Buscar_Pro(String Dato, int opcion) {
+        System.out.print(Dato);
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if (column == 9) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        };
+        String campoDB = "";
+        ResultSet result;
+        try {
+            if (opcion == 1) {
+
+                campoDB = "select * from Proveedor where primernombre_proveedor=" + "'" + Dato + "'";
+            }
+
+            if (opcion == 2) {
+                campoDB = "SELECT * from Proveedor where telefono_proveedor=" + "'" + Dato + "'";
+            }
+            PreparedStatement st = contacto.prepareStatement(campoDB);
+
+            result = st.executeQuery();
+            ResultSetMetaData rmsd = result.getMetaData();
+            int canCol = rmsd.getColumnCount();
+            canCol += 1;
+            for (int i = 1; i < canCol; i++) {
+                String title[] = {"", "ID", "P Nombre", "S Nombre", "P Apellido", "S Apellido", "Dirección", "Telefono", "Correo"};
+                modelo.addColumn(title[i]);
+            }
+            canCol = canCol - 1;
+            while (result.next()) {
+                Object[] fila = new Object[canCol];
+                for (int i = 0; i < canCol; i++) {
+                    fila[i] = result.getObject(i + 1);
+                }
+//                modelo.addRow(new Object[]{fila[0],new JLabel(this.view_img(3)),fila[2],fila[3]});
+                modelo.addRow(fila);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return modelo;
+    }
+
+    /////
     public String[] ModifiPro(int dato, int combo) {
         String resultado[] = new String[11], campoDB = "";
         ResultSet result;
@@ -279,10 +329,8 @@ public class BD_huevos {
         }
         return estado2;
     }
-    
-    
-        /// COmbos PROVEEDORES
-    
+
+    /// COmbos PROVEEDORES
     public DefaultComboBoxModel Combo_nombreProveedor() {
         DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
         listaModelo.addElement("Seleccione");
@@ -297,8 +345,8 @@ public class BD_huevos {
         }
         return listaModelo;
     }
-    
-        public DefaultComboBoxModel Combo_telefonoProveedor() {
+
+    public DefaultComboBoxModel Combo_telefonoProveedor() {
         DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
         listaModelo.addElement("Seleccione");
         ResultSet res = this.Consulta("select * from Proveedor");
@@ -313,8 +361,7 @@ public class BD_huevos {
         return listaModelo;
     }
 
-  //  VISTA CLIENTES
-
+    //  VISTA CLIENTES
     public DefaultTableModel Lista_clie() {
 
         DefaultTableModel modelo = new DefaultTableModel() {
