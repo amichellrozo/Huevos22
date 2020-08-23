@@ -119,17 +119,32 @@ public class Vista_ventas extends JFrame {
         LCantidad.setFont(fuente2);
         LCantidad.setForeground(color2);
 
+        Tcantidad = new JTextField("");
+        Tcantidad.setBounds(50, 300, 190, 27);
+        Tcantidad.setFont(fuente2);
+        Tcantidad.setForeground(color2);
+        Tcantidad.setBorder(thickBorder);
+
         Lprecio = new JLabel("Total:");
         Lprecio.setBounds(50, 360, 170, 50);
         Lprecio.setFont(fuente2);
         Lprecio.setForeground(color2);
 
+        Tprecio = new JTextField("");
+        Tprecio.setBounds(50, 400, 190, 27);
+        Tprecio.setFont(fuente2);
+        Tprecio.setForeground(color2);
+        Tprecio.setBorder(thickBorder);
+        JS1 = new JSeparator(JSeparator.HORIZONTAL);
+        JS1.setForeground(color2);
+        JS1.setBounds(200, 175, 190, 30);
+        Panel1.add(JS1);
+
         Lcliente = new JLabel("Cliente:");
         Lcliente.setBounds(50, 460, 170, 50);
         Lcliente.setFont(fuente2);
         Lcliente.setForeground(color2);
-        
-        
+
         Mostrar = new JButton("MOSTRAR TODO");
         Mostrar.setToolTipText("ESTA OPCIÓN LISTA LOS PROVEEDORES");
         Mostrar.setForeground(color2);
@@ -137,8 +152,8 @@ public class Vista_ventas extends JFrame {
         Mostrar.setFont(fuente2);
         Mostrar.setBounds(300, 670, 180, 45);
         Panel2.add(Mostrar);
-        
-              panel = new JScrollPane(tablav);// debe ir aqui pare evitar errores
+
+        panel = new JScrollPane(tablav);// debe ir aqui pare evitar errores
         tablav.getTableHeader().setReorderingAllowed(false);//Orden de las columnas
         tablav.getTableHeader().setResizingAllowed(false);// orden
         tablav.setFocusable(false);//
@@ -158,13 +173,13 @@ public class Vista_ventas extends JFrame {
         Panel2.add(ListaB);
         Panel1.add(CerrarB);
         Panel1.add(MinimizarB);
-       Panel2.add(BCrear);
+        Panel2.add(BCrear);
         Panel2.add(BEliminar);
-       
+
         this.add(Panel2);
         this.add(Panel1);
 
-       // this.setUndecorated(true);
+        // this.setUndecorated(true);
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.WHITE);
         setVisible(true);
