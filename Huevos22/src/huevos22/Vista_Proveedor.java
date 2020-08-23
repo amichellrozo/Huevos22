@@ -44,7 +44,7 @@ public class Vista_Proveedor extends JFrame {
         setTitle("Menu");
         setSize(1250, 720);
         setLayout(null);
-        ImageIcon favicon = new ImageIcon("gallina.ico");//img pola
+        ImageIcon favicon = new ImageIcon("gallina.png");//img pola
         Image iconog = favicon.getImage();// la polita
         this.setIconImage(iconog);
 

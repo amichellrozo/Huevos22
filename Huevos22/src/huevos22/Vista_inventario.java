@@ -38,7 +38,7 @@ public class Vista_inventario extends JFrame {
         setSize(1250, 720);
         setLayout(null);
 
-        ImageIcon favicon = new ImageIcon("gallina.ico");//img pola
+        ImageIcon favicon = new ImageIcon("gallina.png");//img pola
         Image iconog = favicon.getImage();// la polita
         this.setIconImage(iconog);
 
