@@ -11,4 +11,5 @@ package huevos22;
  */
 public class Vista_compras {
     
+    
 }

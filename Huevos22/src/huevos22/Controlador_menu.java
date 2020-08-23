@@ -20,12 +20,10 @@ public class Controlador_menu implements ActionListener {
 
     Vista_menu vs;
     BD_huevos mom;
-   
 
     Controlador_menu(Vista_menu v, BD_huevos m) {
         mom = m;
         vs = v;
-      
 
         this.vs.JBclientes.addActionListener(this);
         this.vs.JBproveedores.addActionListener(this);
@@ -36,12 +34,7 @@ public class Controlador_menu implements ActionListener {
         this.vs.JBproductos.addActionListener(this);
         this.vs.JBinventario.addActionListener(this);
 
-       
-    
-
     }
-
-    
 
     static Connection contacto1 = null;
 
@@ -49,33 +42,33 @@ public class Controlador_menu implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
 
         if (ae.getSource() == vs.JBproveedores) {
-            
+
             Vista_Proveedor v1 = new Vista_Proveedor();
             BD_huevos m = new BD_huevos();
             Controlador_Proveedor n = new Controlador_Proveedor(v1, m);
-            
+
             vs.setVisible(false);
 
         }
-        if (ae.getSource() == vs.JBclientes) {          
+        if (ae.getSource() == vs.JBclientes) {
             Vista_clientes v1 = new Vista_clientes();
             BD_huevos m = new BD_huevos();
             Controlador_cliente n = new Controlador_cliente(v1, m);
-            
 
             vs.setVisible(false);
         }
-        
-         if (ae.getSource() == vs.JBventas) {          
+
+        if (ae.getSource() == vs.JBventas) {
             Vista_ventas v2 = new Vista_ventas();
             BD_huevos m = new BD_huevos();
             //Controlador_ventas n = new Controlador_ventas(v2, m);
-            
 
             vs.setVisible(false);
         }
+        if (ae.getSource() == vs.JBinventario) {
+            Vista_inventario v1 = new Vista_inventario();
+            vs.setVisible(false);
+        }
     }
-
-    
 
 }
