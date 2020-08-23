@@ -253,7 +253,7 @@ public class Vista_ventas extends JFrame {
         Opciones.setFont(fuente2);
         Opciones.setBorder(new LineBorder(color1));
         Opciones.setForeground(color2);
-        Opciones.setBounds(100, 180, 200, 50);
+        Opciones.setBounds(100, 120, 200, 50);
         Panel1.add(Opciones);
 
         Cnproducto = new JComboBox();
@@ -262,7 +262,7 @@ public class Vista_ventas extends JFrame {
         Cnproducto.setFont(fuente2);
         Cnproducto.setBorder(new LineBorder(color1));
         Cnproducto.setForeground(color2);
-        Cnproducto.setBounds(100, 280, 200, 50);
+        Cnproducto.setBounds(100, 190, 200, 50);
         Panel1.add(Cnproducto);
 
         Cclientee = new JComboBox();
@@ -271,7 +271,7 @@ public class Vista_ventas extends JFrame {
         Cclientee.setFont(fuente2);
         Cclientee.setBorder(new LineBorder(color1));
         Cclientee.setForeground(color2);
-        Cclientee.setBounds(100, 380, 200, 50);
+        Cclientee.setBounds(100, 190, 200, 50);
         Panel1.add(Cclientee);
 
         Cfecha = new JComboBox();
@@ -280,7 +280,7 @@ public class Vista_ventas extends JFrame {
         Cfecha.setFont(fuente2);
         Cfecha.setBorder(new LineBorder(color1));
         Cfecha.setForeground(color1);
-        Cfecha.setBounds(100, 480, 200, 50);
+        Cfecha.setBounds(100, 190, 200, 50);
         Panel1.add(Cfecha);
 
         BuscarP = new JButton("Buscar Venta");
