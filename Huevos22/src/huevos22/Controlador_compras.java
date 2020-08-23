@@ -66,14 +66,17 @@ public class Controlador_compras implements ActionListener{
         if (e.getSource() == vis1.Mostrar) {
             contacto1 = huevos22.BD_huevos.getConexion();
             DefaultTableModel model = new DefaultTableModel();
-            model = mom.Lista_Inv();
+            model = mom.Lista_compras();
             vis1.tablac.setModel(model);
             TableColumnModel columnModel = vis1.tablac.getColumnModel();
 
-            columnModel.getColumn(0).setPreferredWidth(100);
-            columnModel.getColumn(1).setPreferredWidth(100);
-            columnModel.getColumn(2).setPreferredWidth(100);
-            columnModel.getColumn(3).setPreferredWidth(100);
+            columnModel.getColumn(0).setPreferredWidth(30);
+            columnModel.getColumn(1).setPreferredWidth(80);
+            columnModel.getColumn(2).setPreferredWidth(70);
+            columnModel.getColumn(3).setPreferredWidth(70);
+            columnModel.getColumn(4).setPreferredWidth(80);
+            columnModel.getColumn(5).setPreferredWidth(80);
+            columnModel.getColumn(6).setPreferredWidth(100);
             mom.desconectar();
         }
     }
