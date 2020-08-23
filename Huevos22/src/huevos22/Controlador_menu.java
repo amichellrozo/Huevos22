@@ -65,6 +65,15 @@ public class Controlador_menu implements ActionListener {
 
             vs.setVisible(false);
         }
+        
+         if (ae.getSource() == vs.JBventas) {          
+            Vista_ventas v2 = new Vista_ventas();
+            BD_huevos m = new BD_huevos();
+            //Controlador_ventas n = new Controlador_ventas(v2, m);
+            
+
+            vs.setVisible(false);
+        }
     }
 
     

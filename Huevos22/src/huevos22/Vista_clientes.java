@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,18 +29,19 @@ public class Vista_clientes extends JFrame {
     JPanel Panel1, Panel2;
     JLabel Titulo, PNombre, SNombre, PApellido, SApellido, Direccion, Telefono, Correo, Logo;
     JTextField TPNombre, TSNombre, TPApellido, TSApellido, TDireccion, TTelefono, TCorreo, TId_cliente;
-    JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ActualizarB, ListaB, Mostrar,ActualizarC;
+    JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ActualizarB, ListaB, Mostrar, ActualizarC, BuscarP;
     ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ActualizarI, ListaI, imagen;
     JSeparator JS1, JS2, JS3, JS4, JS5, JS6, JS7, JS8;
     JTable tablac;
     JScrollPane panel;
-    String Titulos[] = {"Nombre", "Apellido", "Edad"};
+    Border thickBorder = new LineBorder(Color.white, 2);
+    JComboBox Opciones, Nombres, Telefonos;
+        String Titulos[] = {"Nombre", "Apellido", "Edad"};
     Font fuente1 = new Font("Microsoft JhengHei Light", Font.PLAIN, 50);
     Font fuente2 = new Font("Microsoft JhengHei Light", Font.PLAIN, 18);
     Font fuente3 = new Font("Microsoft JhengHei Light", Font.PLAIN, 15);
     Color color1 = new Color(110, 197, 184);
     Color color2 = new Color(220, 91, 5);
-    Border thickBorder = new LineBorder(Color.white, 2);
 
     Vista_clientes() {
         setTitle("Clientes");
@@ -69,7 +71,7 @@ public class Vista_clientes extends JFrame {
         Mostrar.setForeground(color2);
         Mostrar.setBackground(Color.white);
         Mostrar.setFont(fuente2);
-Mostrar.setBounds(300, 670, 180, 45);
+        Mostrar.setBounds(300, 670, 180, 45);
         Panel2.add(Mostrar);
 
         Titulo = new JLabel("CLIENTES");
@@ -218,7 +220,7 @@ Mostrar.setBounds(300, 670, 180, 45);
         CrearP.setBackground(color1);
         CrearP.setForeground(color2);
         CrearP.setFont(fuente2);
-        
+
         ActualizarC = new JButton("Actualizar Cliente");
         ActualizarC.setBounds(140, 590, 220, 50);
         ActualizarC.setBackground(color1);
@@ -270,6 +272,39 @@ Mostrar.setBounds(300, 670, 180, 45);
         JS7.setBounds(130, 535, 260, 30);
         Panel1.add(JS7);
 
+        String opcPP[] = {"Seleccionar Opción", "Nombre", "Telefono"};
+        Opciones = new JComboBox(opcPP);
+        Opciones.setBackground(color1);
+        Opciones.setOpaque(false);
+        Opciones.setFont(fuente2);
+        Opciones.setBorder(new LineBorder(Color.white));
+        Opciones.setForeground(color2);
+        Opciones.setBounds(130, 240, 200, 50);
+
+        Nombres = new JComboBox();
+        Nombres.setBackground(color1);
+        Nombres.setOpaque(false);
+        Nombres.setFont(fuente2);
+        Nombres.setBorder(new LineBorder(Color.white));
+        Nombres.setForeground(color2);
+        Nombres.setBounds(130, 320, 200, 50);
+
+        Telefonos = new JComboBox();
+        Telefonos.setBackground(color1);
+        Telefonos.setOpaque(false);
+        Telefonos.setFont(fuente2);
+        Telefonos.setBorder(new LineBorder(Color.white));
+        Telefonos.setForeground(color2);
+        Telefonos.setBounds(130, 400, 200, 50);
+
+        BuscarP = new JButton("Buscar Cliente");
+        BuscarP.setBounds(110, 590, 230, 50);
+        BuscarP.setBackground(color1);
+        BuscarP.setForeground(color2);
+        BuscarP.setFont(fuente2);
+
+        Panel1.add(BuscarP);
+
         PNombre.setVisible(false);
         SNombre.setVisible(false);
         PApellido.setVisible(false);
@@ -293,6 +328,11 @@ Mostrar.setBounds(300, 670, 180, 45);
         JS7.setVisible(false);
         CrearP.setVisible(false);
         ActualizarC.setVisible(false);
+        Opciones.setVisible(false);
+        Nombres.setVisible(false);
+        Telefonos.setVisible(false);
+        BuscarP.setVisible(false);
+
 
         imagen = new ImageIcon("Logo1.png");
         Logo = new JLabel(imagen);
@@ -317,14 +357,16 @@ Mostrar.setBounds(300, 670, 180, 45);
         tablac.setBorder(new LineBorder(color1));
         tablac.setForeground(Color.white);
         panel.setBounds(60, 170, 660, 500);
-
+        Panel1.add(Telefonos);
+        Panel1.add(Nombres);
+        Panel1.add(Opciones);
         Panel2.add(panel);
         Panel1.add(Logo);
         Panel2.add(ListaB);
         Panel2.add(ActualizarB);
         Panel1.add(volver);
         Panel1.add(CrearP);
-       Panel1.add(ActualizarC);
+        Panel1.add(ActualizarC);
         Panel1.add(TCorreo);
         Panel1.add(TTelefono);
         Panel1.add(TDireccion);

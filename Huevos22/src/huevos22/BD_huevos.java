@@ -1,5 +1,6 @@
 package huevos22;
 
+import static huevos22.BD_huevos.getConexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -308,6 +309,23 @@ public class BD_huevos {
         }
         return resultado;
     }
+        public int Borrarproveedor(int id_proveedor) {
+        int estado;
+        try {
+            PreparedStatement st = contacto.prepareStatement("delete from Proveedor where id_proveedor = ?");
+
+            st.setInt(1, id_proveedor);
+            st.executeUpdate();
+
+            st.execute();
+            estado = 1;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            estado = 0;
+        }
+
+        return estado;
+    }
 
     public int Act_Pro(int id_proveedor, String primernombre_proveedor, String segundonombre_proveedor, String primerapellido_proveedor, String segundoapellido_proveedor, String direccion_proveedor, String telefono_proveedor, String corrreo_proveedor) {
         int estado2;
@@ -448,23 +466,7 @@ public class BD_huevos {
         return estado;
     }
 
-    public int Borrarproveedor(int id_proveedor) {
-        int estado;
-        try {
-            PreparedStatement st = contacto.prepareStatement("delete from Proveedor where id_proveedor = ?");
 
-            st.setInt(1, id_proveedor);
-            st.executeUpdate();
-
-            st.execute();
-            estado = 1;
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-            estado = 0;
-        }
-
-        return estado;
-    }
 
     public int Actualizarcliente(int id_cliente, String primernombre_clientes, String segundonombre_clientes, String primerapellido_cliente,
             String segundoapellido_cliente, String direccion_cliente, String telefono_cliente, String correo_cliente) {
@@ -508,6 +510,85 @@ public class BD_huevos {
         }
 
         return estado;
+    }
+
+        public DefaultComboBoxModel Combo_nombrecliente() {
+        DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+        listaModelo.addElement("Seleccione");
+        ResultSet res = this.Consulta("select * from Cliente");
+        try {
+            while (res.next()) {
+                listaModelo.addElement(res.getString("primernombre_cliente"));
+            }
+            res.close();
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+        }
+        return listaModelo;
+    }
+    
+        public DefaultComboBoxModel Combo_telefonocliente() {
+        DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+        listaModelo.addElement("Seleccione");
+        ResultSet res = this.Consulta("select * from Cliente");
+        try {
+            while (res.next()) {
+                listaModelo.addElement(res.getString("telefono_cliente"));
+            }
+            res.close();
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+        }
+        return listaModelo;
+    }
+        
+            public DefaultTableModel Buscar_cliente(String Dato, int opcion) {
+        System.out.print(Dato);
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if (column == 9) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        };
+        String campoDB = "";
+        ResultSet result;
+        try {
+            if (opcion == 1) {
+
+                campoDB = "select * from Cliente where primernombre_cliente=" + "'" + Dato + "'";
+            }
+
+            if (opcion == 2) {
+                campoDB = "SELECT * from Cliente where telefono_cliente=" + "'" + Dato + "'";
+            }
+            PreparedStatement st = contacto.prepareStatement(campoDB);
+
+            result = st.executeQuery();
+            ResultSetMetaData rmsd = result.getMetaData();
+            int canCol = rmsd.getColumnCount();
+            canCol += 1;
+            for (int i = 1; i < canCol; i++) {
+                String title[] = {"", "ID", "P Nombre", "S Nombre", "P Apellido", "S Apellido", "Dirección", "Telefono", "Correo"};
+                modelo.addColumn(title[i]);
+            }
+            canCol = canCol - 1;
+            while (result.next()) {
+                Object[] fila = new Object[canCol];
+                for (int i = 0; i < canCol; i++) {
+                    fila[i] = result.getObject(i + 1);
+                }
+//              
+                modelo.addRow(fila);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return modelo;
     }
 
 }
