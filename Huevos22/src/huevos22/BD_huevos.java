@@ -353,10 +353,10 @@ public class BD_huevos {
     public DefaultComboBoxModel Combo_nombreProveedor() {
         DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
         listaModelo.addElement("Seleccione");
-        ResultSet res = this.Consulta("select * from Proveedor");
+        ResultSet res = this.Consulta("select concat(primernombre_proveedor, ' ' ,primerapellido_proveedor) as Nombre from Proveedor");
         try {
             while (res.next()) {
-                listaModelo.addElement(res.getString("primernombre_proveedor"));
+                listaModelo.addElement(res.getString("Nombre"));
             }
             res.close();
         } catch (SQLException ex) {
@@ -514,10 +514,10 @@ public class BD_huevos {
     public DefaultComboBoxModel Combo_nombrecliente() {
         DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
         listaModelo.addElement("Seleccione");
-        ResultSet res = this.Consulta("select * from Cliente");
+        ResultSet res = this.Consulta("select CONCAT(primernombre_cliente, ' ', primerapellido_cliente) as Nombre from Cliente");
         try {
             while (res.next()) {
-                listaModelo.addElement(res.getString("primernombre_cliente"));
+                listaModelo.addElement(res.getString("Nombre"));
             }
             res.close();
         } catch (SQLException ex) {
@@ -802,7 +802,7 @@ public class BD_huevos {
 
             PreparedStatement st = contacto.prepareStatement("select p.id_proveedor\n"
                     + "from Proveedor p\n"
-                    + "where p.primernombre_proveedor= ?");
+                    + "where concat(p.primernombre_proveedor, ' ', primerapellido_proveedor)= ?");
             System.out.println("saleid");
             st.setString(1, idpro);
 
@@ -810,6 +810,30 @@ public class BD_huevos {
             result = st.executeQuery();
             while (result.next()) {
                 precio1 = result.getString("id_proveedor");
+
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return precio1;
+
+    }
+     
+          public String idcliente(String idpro) {
+        ResultSet result;
+        String precio1 = null;
+        try {
+
+            PreparedStatement st = contacto.prepareStatement("select p.id_cliente\n"
+                    + "from Cliente p\n"
+                    + "where concat(p.primernombre_cliente, ' ', primerapellido_cliente)= ?");
+            System.out.println("saleid");
+            st.setString(1, idpro);
+
+            st.execute();
+            result = st.executeQuery();
+            while (result.next()) {
+                precio1 = result.getString("id_cliente");
 
             }
         } catch (SQLException ex) {
@@ -829,6 +853,44 @@ public class BD_huevos {
 
             st.execute();
             estado = 1;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            estado = 0;
+        }
+
+        return estado;
+    }
+                  public int BorrarVenta(int id_compra) {
+        int estado;
+        try {
+            PreparedStatement st = contacto.prepareStatement("delete from Venta where id_venta = ?");
+
+            st.setInt(1, id_compra);
+            st.executeUpdate();
+
+            st.execute();
+            estado = 1;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            estado = 0;
+        }
+
+        return estado;
+    }
+         
+             public int Agre_ventita(int id_producto, int cantidad_venta, int total_venta,
+            int id_cliente) {
+        int estado;
+        try {
+
+            PreparedStatement st = contacto.prepareStatement("insert Venta (id_producto,cantidad_venta,total_venta,id_cliente) values (?,?,?,?)");
+            st.setInt(1, id_producto);
+            st.setInt(2, cantidad_venta);
+            st.setInt(3, total_venta);
+            st.setInt(4, id_cliente);
+            st.execute();
+            estado = 1;
+
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
             estado = 0;

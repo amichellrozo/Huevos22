@@ -95,6 +95,11 @@ public class Controlador_compras implements ActionListener {
             vis1.JS2.setVisible(true);
             vis1.CrearP.setVisible(true);
             vis1.Logo.setVisible(false);
+            vis1.Opciones.setVisible(false);
+            vis1.Cfecha.setVisible(false);
+            vis1.Cprobe.setVisible(false);
+            vis1.Cnproducto.setVisible(false);
+            vis1.BuscarP.setVisible(false);
         }
         if (e.getSource() == vis1.Cproductos) {
             contacto1 = huevos22.BD_huevos.getConexion();

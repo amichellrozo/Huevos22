@@ -28,7 +28,7 @@ public class Vista_ventas extends JFrame {
 
     JPanel Panel1, Panel2;
     JLabel Titulo, LProduto, LCantidad, Lprecio, Lcliente, Lunid, Lpeso, Logo, Lidv;
-    JTextField Tcantidad, Tprecio;
+    JTextField Tcantidad, Tprecio,TId_proveeedor,TId_proveeedor1;
     JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ListaB, Mostrar, ActualizarC, BuscarP;
     ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ListaI, imagen;
     JSeparator JS1, JS2, JS3, JS4;
@@ -128,6 +128,24 @@ public class Vista_ventas extends JFrame {
         LProduto.setFont(fuente2);
         LProduto.setForeground(color2);
 
+        TId_proveeedor = new JTextField("");
+        TId_proveeedor.setBounds(130, 600, 240, 27);
+        TId_proveeedor.setFont(fuente2);
+        TId_proveeedor.setForeground(color2);
+        TId_proveeedor.setBorder(thickBorder);
+
+        Panel2.add(TId_proveeedor);
+        TId_proveeedor.setVisible(false);
+
+        TId_proveeedor1 = new JTextField("");
+        TId_proveeedor1.setBounds(130, 640, 240, 27);
+        TId_proveeedor1.setFont(fuente2);
+        TId_proveeedor1.setForeground(color2);
+        TId_proveeedor1.setBorder(thickBorder);
+
+        Panel2.add(TId_proveeedor1);
+        TId_proveeedor1.setVisible(false);
+
         Cproductos = new JComboBox();
         Cproductos.setBackground(blanco);
         Cproductos.setOpaque(false);
@@ -160,7 +178,7 @@ public class Vista_ventas extends JFrame {
         JS2.setBounds(80, 347, 190, 30);
         Panel1.add(JS2);
 
-        Lprecio = new JLabel("Precio Por Unidad:");
+        Lprecio = new JLabel("Precio Total:");
         Lprecio.setBounds(80, 360, 170, 50);
         Lprecio.setFont(fuente2);
         Lprecio.setForeground(color2);
@@ -228,8 +246,7 @@ public class Vista_ventas extends JFrame {
         tablav.setForeground(Color.white);
         panel.setBounds(60, 170, 660, 500);
 
-        
-         String opcPP[] = {"Seleccionar Opción", "Producto", "Cliente","Fecha venta"};
+        String opcPP[] = {"Seleccionar Opción", "Producto", "Cliente", "Fecha venta"};
         Opciones = new JComboBox(opcPP);
         Opciones.setBackground(blanco);
         Opciones.setOpaque(false);
@@ -272,7 +289,7 @@ public class Vista_ventas extends JFrame {
         BuscarP.setForeground(negro);
         BuscarP.setFont(fuente2);
         Panel1.add(BuscarP);
-        
+
         volver = new JButton(Minimizar);
         volver.setContentAreaFilled(false);
         volver.setBorderPainted(false);
@@ -284,7 +301,7 @@ public class Vista_ventas extends JFrame {
         Panel1.add(volver);
 
         Lidv.setVisible(false);
-      
+
         LProduto.setVisible(false);
         LCantidad.setVisible(false);
         Lprecio.setVisible(false);
@@ -304,9 +321,6 @@ public class Vista_ventas extends JFrame {
         Cclientee.setVisible(false);
         Cnproducto.setVisible(false);
         BuscarP.setVisible(false);
-        
-      
-        
 
         Panel1.add(Titulo);
         Panel1.add(LProduto);
