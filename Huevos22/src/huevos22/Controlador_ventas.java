@@ -22,14 +22,68 @@ public class Controlador_ventas implements ActionListener{
  Controlador_ventas(Vista_ventas v1, BD_huevos m) {
         mom = m;
         vis1 = v1;
-
+         vis1.ListaB.addActionListener(this);
+               vis1.BCrear.addActionListener(this);
         vis1.CerrarB.addActionListener(this);
         vis1.MinimizarB.addActionListener(this);
         vis1.volver.addActionListener(this);
         vis1.Mostrar.addActionListener(this);
+         vis1.BuscarP.addActionListener(this);
+        
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        if(e.getSource() == vis1.BCrear){
+            
+            vis1.Lpeso.setVisible(true);
+            vis1.Lunid.setVisible(true);
+            vis1.Lprecio.setVisible(true);
+            vis1.Lcliente.setVisible(true);
+            vis1.LProduto.setVisible(true);
+            vis1.LCantidad.setVisible(true);
+            vis1.Tcantidad.setVisible(true);
+            vis1.Tprecio.setVisible(true);
+            vis1.Ccliente.setVisible(true);
+            vis1.Cproductos.setVisible(true);
+            vis1.JS1.setVisible(true);
+            vis1.JS2.setVisible(true);
+            vis1.CrearP.setVisible(true);
+            vis1.Logo.setVisible(false);
+                  vis1.Opciones.setVisible(false);
+                vis1.Cfecha.setVisible(false);
+        vis1. Cclientee.setVisible(false);
+        vis1. Cnproducto.setVisible(false);
+         vis1.BuscarP.setVisible(false);
+         
+            
+            
+        }
+                if(e.getSource() == vis1.ListaB){
+                                vis1.Lpeso.setVisible(false);
+            vis1.Lunid.setVisible(false);
+            vis1.Lprecio.setVisible(false);
+            vis1.Lcliente.setVisible(false);
+            vis1.LProduto.setVisible(false);
+            vis1.LCantidad.setVisible(false);
+            vis1.Tcantidad.setVisible(false);
+            vis1.Tprecio.setVisible(false);
+            vis1.Ccliente.setVisible(false);
+            vis1.Cproductos.setVisible(false);
+            vis1.JS1.setVisible(false);
+            vis1.JS2.setVisible(false);
+            vis1.CrearP.setVisible(false);
+            vis1.Logo.setVisible(false);
+
+         vis1.Opciones.setVisible(true);
+   
+         vis1.Cfecha.setVisible(true);
+        vis1. Cclientee.setVisible(true);
+        vis1. Cnproducto.setVisible(true);
+         vis1.BuscarP.setVisible(true);
+         
+            
+        }
           if (e.getSource() == vis1.CerrarB) {
             System.exit(0);
         }

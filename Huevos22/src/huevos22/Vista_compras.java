@@ -228,7 +228,10 @@ public class Vista_compras extends JFrame {
         tablac.setForeground(Color.white);
         panel.setBounds(60, 170, 660, 500);
 
-        Opciones = new JComboBox();
+        
+        
+        String opcPP[] = {"Seleccionar Opción", "Producto", "Proveedor","Fecha venta"};
+        Opciones = new JComboBox(opcPP);
         Opciones.setBackground(blanco);
         Opciones.setOpaque(false);
         Opciones.setFont(fuente2);

@@ -228,12 +228,14 @@ public class Vista_ventas extends JFrame {
         tablav.setForeground(Color.white);
         panel.setBounds(60, 170, 660, 500);
 
-        Opciones = new JComboBox();
+        
+         String opcPP[] = {"Seleccionar Opción", "Producto", "Cliente","Fecha venta"};
+        Opciones = new JComboBox(opcPP);
         Opciones.setBackground(blanco);
         Opciones.setOpaque(false);
         Opciones.setFont(fuente2);
         Opciones.setBorder(new LineBorder(color1));
-        Opciones.setForeground(color1);
+        Opciones.setForeground(color2);
         Opciones.setBounds(100, 180, 200, 50);
         Panel1.add(Opciones);
 
@@ -242,7 +244,7 @@ public class Vista_ventas extends JFrame {
         Cnproducto.setOpaque(false);
         Cnproducto.setFont(fuente2);
         Cnproducto.setBorder(new LineBorder(color1));
-        Cnproducto.setForeground(color1);
+        Cnproducto.setForeground(color2);
         Cnproducto.setBounds(100, 280, 200, 50);
         Panel1.add(Cnproducto);
 
@@ -251,7 +253,7 @@ public class Vista_ventas extends JFrame {
         Cclientee.setOpaque(false);
         Cclientee.setFont(fuente2);
         Cclientee.setBorder(new LineBorder(color1));
-        Cclientee.setForeground(color1);
+        Cclientee.setForeground(color2);
         Cclientee.setBounds(100, 380, 200, 50);
         Panel1.add(Cclientee);
 

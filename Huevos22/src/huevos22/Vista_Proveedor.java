@@ -30,6 +30,8 @@ public class Vista_Proveedor extends JFrame {
     Color color1 = new Color(110, 197, 184);
     Color color2 = new Color(220, 91, 5);
     Border thickBorder = new LineBorder(Color.white, 2);
+      Color blanco = new Color(255, 255, 255);
+    Color negro = new Color(0, 0, 0);
     JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ActualizarB, ListaB, Mostrar, ActualizarP, BuscarP;
     ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ActualizarI, ListaI, imagen, MostrarI;
     JSeparator JS1, JS2, JS3, JS4, JS5, JS6, JS7, JS8;
@@ -215,13 +217,13 @@ public class Vista_Proveedor extends JFrame {
         CrearP = new JButton("Crear Proveedor");
         CrearP.setBounds(140, 590, 170, 50);
         CrearP.setBackground(color1);
-        CrearP.setForeground(color2);
+        CrearP.setForeground(negro);
         CrearP.setFont(fuente2);
 
         ActualizarP = new JButton("Actualizar Proveedor");
         ActualizarP.setBounds(110, 590, 230, 50);
         ActualizarP.setBackground(color1);
-        ActualizarP.setForeground(color2);
+        ActualizarP.setForeground(negro);
         ActualizarP.setFont(fuente2);
 
         Panel1.add(ActualizarP);
@@ -229,7 +231,7 @@ public class Vista_Proveedor extends JFrame {
         BuscarP = new JButton("Buscar Proveedor");
         BuscarP.setBounds(110, 590, 230, 50);
         BuscarP.setBackground(color1);
-        BuscarP.setForeground(color2);
+        BuscarP.setForeground(negro);
         BuscarP.setFont(fuente2);
 
         Panel1.add(BuscarP);
@@ -302,26 +304,26 @@ public class Vista_Proveedor extends JFrame {
 
         String opcPP[] = {"Seleccionar Opción", "Nombre", "Telefono"};
         Opciones = new JComboBox(opcPP);
-        Opciones.setBackground(color1);
+        Opciones.setBackground(blanco);
         Opciones.setOpaque(false);
         Opciones.setFont(fuente2);
-        Opciones.setBorder(new LineBorder(Color.white));
+        Opciones.setBorder(new LineBorder(color1));
         Opciones.setForeground(color2);
         Opciones.setBounds(130, 240, 200, 50);
 
         Nombres = new JComboBox();
-        Nombres.setBackground(color1);
+        Nombres.setBackground(blanco);
         Nombres.setOpaque(false);
         Nombres.setFont(fuente2);
-        Nombres.setBorder(new LineBorder(Color.white));
+        Nombres.setBorder(new LineBorder(color1));
         Nombres.setForeground(color2);
         Nombres.setBounds(130, 320, 200, 50);
 
         Telefonos = new JComboBox();
-        Telefonos.setBackground(color1);
+        Telefonos.setBackground(blanco);
         Telefonos.setOpaque(false);
         Telefonos.setFont(fuente2);
-        Telefonos.setBorder(new LineBorder(Color.white));
+        Telefonos.setBorder(new LineBorder(color1));
         Telefonos.setForeground(color2);
         Telefonos.setBounds(130, 400, 200, 50);
 

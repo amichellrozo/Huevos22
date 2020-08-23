@@ -42,6 +42,8 @@ public class Vista_clientes extends JFrame {
     Font fuente3 = new Font("Microsoft JhengHei Light", Font.PLAIN, 15);
     Color color1 = new Color(110, 197, 184);
     Color color2 = new Color(220, 91, 5);
+     Color blanco = new Color(255, 255, 255);
+    Color negro = new Color(0, 0, 0);
 
     Vista_clientes() {
         setTitle("Clientes");
@@ -218,13 +220,13 @@ public class Vista_clientes extends JFrame {
         CrearP = new JButton("Crear Cliente");
         CrearP.setBounds(140, 590, 170, 50);
         CrearP.setBackground(color1);
-        CrearP.setForeground(color2);
+        CrearP.setForeground(negro);
         CrearP.setFont(fuente2);
 
         ActualizarC = new JButton("Actualizar Cliente");
         ActualizarC.setBounds(140, 590, 220, 50);
         ActualizarC.setBackground(color1);
-        ActualizarC.setForeground(color2);
+        ActualizarC.setForeground(negro);
         ActualizarC.setFont(fuente2);
 
         volver = new JButton(Minimizar);
@@ -273,33 +275,33 @@ public class Vista_clientes extends JFrame {
 
         String opcPP[] = {"Seleccionar Opción", "Nombre", "Telefono"};
         Opciones = new JComboBox(opcPP);
-        Opciones.setBackground(color1);
+        Opciones.setBackground(blanco);
         Opciones.setOpaque(false);
         Opciones.setFont(fuente2);
-        Opciones.setBorder(new LineBorder(Color.white));
+        Opciones.setBorder(new LineBorder(color1));
         Opciones.setForeground(color2);
         Opciones.setBounds(130, 240, 200, 50);
 
         Nombres = new JComboBox();
-        Nombres.setBackground(color1);
+        Nombres.setBackground(blanco);
         Nombres.setOpaque(false);
         Nombres.setFont(fuente2);
-        Nombres.setBorder(new LineBorder(Color.white));
+        Nombres.setBorder(new LineBorder(color1));
         Nombres.setForeground(color2);
         Nombres.setBounds(130, 320, 200, 50);
 
         Telefonos = new JComboBox();
-        Telefonos.setBackground(color1);
+        Telefonos.setBackground(blanco);
         Telefonos.setOpaque(false);
         Telefonos.setFont(fuente2);
-        Telefonos.setBorder(new LineBorder(Color.white));
+        Telefonos.setBorder(new LineBorder(color1));
         Telefonos.setForeground(color2);
         Telefonos.setBounds(130, 400, 200, 50);
 
         BuscarP = new JButton("Buscar Cliente");
         BuscarP.setBounds(110, 590, 230, 50);
         BuscarP.setBackground(color1);
-        BuscarP.setForeground(color2);
+        BuscarP.setForeground(negro);
         BuscarP.setFont(fuente2);
 
         Panel1.add(BuscarP);
