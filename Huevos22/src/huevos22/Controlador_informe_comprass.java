@@ -72,7 +72,7 @@ public class Controlador_informe_comprass implements ActionListener {
             vis1.egresos.setVisible(true);
             vis1.pesos.setVisible(true);
             vis1.total.setVisible(true);
-            vis1.Logo.setVisible(false);
+            vis1.Logo.setVisible(true);
             vis1.total.setText(Integer.toString(SumaBalance()));
         }
     }

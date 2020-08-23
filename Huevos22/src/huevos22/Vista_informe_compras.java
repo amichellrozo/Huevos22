@@ -73,22 +73,22 @@ public class Vista_informe_compras extends JFrame {
         Titulo1.setBounds(110, 100, 600, 45);
         Panel1.add(Titulo1);
 
-        egresos = new JLabel("TOTAL :");
+        egresos = new JLabel("TOTAL COMPRAS :");
         egresos.setFont(fuentev);
         egresos.setForeground(color2);
-        egresos.setBounds(70, 300, 600, 45);
+        egresos.setBounds(70, 600, 600, 45);
         Panel1.add(egresos);
 
         pesos = new JLabel("$");
         pesos.setFont(fuentev);
         pesos.setForeground(color2);
-        pesos.setBounds(80, 380, 40, 45);
+        pesos.setBounds(80, 650, 40, 45);
         Panel1.add(pesos);
         
         total = new JLabel();
         total.setFont(fuentev);
         total.setForeground(color2);
-        total.setBounds(120, 380, 250, 45);
+        total.setBounds(120, 650, 250, 45);
         Panel1.add(total);
         
         egresos.setVisible(false);
