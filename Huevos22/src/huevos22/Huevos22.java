@@ -1,4 +1,3 @@
-
 package huevos22;
 
 public class Huevos22 {
@@ -8,8 +7,7 @@ public class Huevos22 {
 //        BD_huevos m =new  BD_huevos ();
 //         Controlador_Login n = new  Controlador_Login (v1,m);
 
-    Vista_ventas v1 = new Vista_ventas();
-
+        Vista_ventas v1 = new Vista_ventas();
     }
-    
+
 }

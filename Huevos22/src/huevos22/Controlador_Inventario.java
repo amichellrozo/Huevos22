@@ -5,9 +5,12 @@
  */
 package huevos22;
 
+import static huevos22.Controlador_Registro.contacto1;
 import static java.awt.Frame.ICONIFIED;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -41,6 +44,19 @@ public class Controlador_Inventario implements ActionListener {
             BD_huevos h = new BD_huevos();
             Controlador_menu M = new Controlador_menu(v, h);
             vis1.setVisible(false);
+        }
+        if (e.getSource() == vis1.Mostrar) {
+            contacto1 = huevos22.BD_huevos.getConexion();
+            DefaultTableModel model = new DefaultTableModel();
+            model = mom.Lista_Inv();
+            vis1.tabla.setModel(model);
+            TableColumnModel columnModel = vis1.tabla.getColumnModel();
+
+            columnModel.getColumn(0).setPreferredWidth(100);
+            columnModel.getColumn(1).setPreferredWidth(100);
+            columnModel.getColumn(2).setPreferredWidth(100);
+            columnModel.getColumn(3).setPreferredWidth(100);
+            mom.desconectar();
         }
     }
 

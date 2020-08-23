@@ -66,7 +66,9 @@ public class Controlador_menu implements ActionListener {
             vs.setVisible(false);
         }
         if (ae.getSource() == vs.JBinventario) {
-            Vista_inventario v1 = new Vista_inventario();
+            Vista_inventario vi = new Vista_inventario();
+            BD_huevos bd = new BD_huevos();
+            Controlador_Inventario c1 = new Controlador_Inventario(vi, bd);
             vs.setVisible(false);
         }
     }

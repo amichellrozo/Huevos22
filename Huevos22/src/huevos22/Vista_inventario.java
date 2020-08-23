@@ -4,19 +4,22 @@
  * and open the template in the editor.
  */
 package huevos22;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+
 /**
  *
  * @author michi
  */
-public class Vista_inventario extends JFrame{
-     JPanel Panel1, Panel2;
-    JLabel Titulo, Logo;
+public class Vista_inventario extends JFrame {
+
+    JPanel Panel1, Panel2;
+    JLabel Titulo,Titulo1, Logo;
     JTextField TPNombre;
     Font fuente1 = new Font("Microsoft JhengHei Light", Font.PLAIN, 50);
     Font fuente2 = new Font("Microsoft JhengHei Light", Font.PLAIN, 18);
@@ -48,7 +51,13 @@ public class Vista_inventario extends JFrame{
         JLabel Titulo = new JLabel("INVENTARIO");
         Titulo.setFont(fuente1);
         Titulo.setForeground(color2);
-        Titulo.setBounds(50, 50, 350, 45);
+        Titulo.setBounds(80, 50, 350, 45);
+
+        JLabel Titulo1 = new JLabel("PRODUCTOS ACTUALES");
+        Titulo1.setFont(fuente1);
+        Titulo1.setForeground(color2);
+        Titulo1.setBounds(110, 50, 600, 45);
+        Panel2.add(Titulo1);
 
         MinimizarB = new JButton(Minimizar);
         MinimizarB.setContentAreaFilled(false);
@@ -100,9 +109,6 @@ public class Vista_inventario extends JFrame{
         tabla.setForeground(Color.white);
         panel.setBounds(60, 170, 660, 480);
 
-        TPNombre.setVisible(false);
-        
-        
         Mostrar = new JButton("MOSTRAR TODO");
         Mostrar.setToolTipText("ESTA OPCIÓN LISTA LOS PROVEEDORES");
         Mostrar.setForeground(color2);
@@ -114,7 +120,6 @@ public class Vista_inventario extends JFrame{
         Panel2.add(panel);
         Panel1.add(Logo);
         Panel1.add(volver);
-        Panel1.add(TPNombre);
         Panel1.add(CerrarB);
         Panel1.add(MinimizarB);
         Panel1.add(Titulo);
