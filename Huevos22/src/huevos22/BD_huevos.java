@@ -1030,6 +1030,28 @@ public class BD_huevos {
         return estado;
     }
                 
-         
+           public String cantidad(String cantidad) {
+        ResultSet result;
+        String precio1 = null;
+        try {
+            PreparedStatement st = contacto.prepareStatement("select Ex.cantidad_producto  from Existencia Ex\n"
+                    + "where Ex.id_producto=?");
+ 
+            st.setString(1, cantidad);
+
+            st.execute();
+            result = st.executeQuery();
+                       System.out.println("salecantidad");
+            while (result.next()) {
+                precio1 = result.getString("cantidad_producto");
+                System.out.println("cantidad"+precio1);
+
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return precio1;
+
+    }  
           
 }

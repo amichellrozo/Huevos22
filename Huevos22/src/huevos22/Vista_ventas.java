@@ -28,7 +28,7 @@ public class Vista_ventas extends JFrame {
 
     JPanel Panel1, Panel2;
     JLabel Titulo, LProduto, LCantidad, Lprecio, Lcliente, Lunid, Lpeso, Logo, Lidv;
-    JTextField Tcantidad, Tprecio,TId_proveeedor,TId_proveeedor1;
+    JTextField Tcantidad, Tprecio,TId_proveeedor,TId_proveeedor1,TId_proveeedor2;
     JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ListaB, Mostrar, ActualizarC, BuscarP;
     ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ListaI, imagen;
     JSeparator JS1, JS2, JS3, JS4;
@@ -145,6 +145,15 @@ public class Vista_ventas extends JFrame {
 
         Panel2.add(TId_proveeedor1);
         TId_proveeedor1.setVisible(false);
+        
+        TId_proveeedor2 = new JTextField("");
+        TId_proveeedor2.setBounds(180, 640, 240, 27);
+        TId_proveeedor2.setFont(fuente2);
+        TId_proveeedor2.setForeground(color2);
+        TId_proveeedor2.setBorder(thickBorder);
+
+        Panel2.add(TId_proveeedor2);
+        TId_proveeedor2.setVisible(false);
 
         Cproductos = new JComboBox();
         Cproductos.setBackground(blanco);

@@ -18,10 +18,10 @@ import javax.swing.table.TableColumnModel;
  * @author michi
  */
 public class Controlador_ventas implements ActionListener {
-    
+
     Vista_ventas vis1;
     BD_huevos mom;
-    
+
     Controlador_ventas(Vista_ventas v1, BD_huevos m) {
         mom = m;
         vis1 = v1;
@@ -37,20 +37,20 @@ public class Controlador_ventas implements ActionListener {
         vis1.Ccliente.addActionListener(this);
         vis1.Cproductos.setModel(mom.Combo_Productos());
         vis1.Ccliente.setModel(mom.Combo_nombrecliente());
-         vis1.Cnproducto.setModel(mom.combo_pro());
+        vis1.Cnproducto.setModel(mom.combo_pro());
         vis1.Cclientee.setModel(mom.combo_clientes());
         vis1.Cfecha.setModel(mom.combo_fecha());
         vis1.Opciones.addActionListener(this);
         vis1.BEliminar.addActionListener(this);
     }
-    
-        public void limpiarcampos() {
+
+    public void limpiarcampos() {
         vis1.Tprecio.setText("");
         vis1.Tcantidad.setText("");
         vis1.Ccliente.removeAllItems();
         vis1.Cproductos.removeAllItems();
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vis1.BEliminar) {
@@ -89,35 +89,49 @@ public class Controlador_ventas implements ActionListener {
             if (vis1.Cproductos.getSelectedIndex() == 0 || vis1.Tcantidad.getText().isEmpty() || vis1.Tprecio.getText().isEmpty() || vis1.Ccliente.getSelectedIndex() == 0) { // si estos coampos no estan llenos
                 JOptionPane.showMessageDialog(null, "Campos Vacios");
             } else {
-                
-                int v = this.mom.Agre_ventita(Integer.parseInt(vis1.TId_proveeedor.getText()), Integer.parseInt(vis1.Tcantidad.getText()), Integer.parseInt(vis1.Tprecio.getText()), Integer.parseInt(vis1.TId_proveeedor1.getText()));
-                if (v == 0) {
-                    JOptionPane.showMessageDialog(null, "No Guardado", "Informacion", 0);
+                String cantidad = this.mom.cantidad(this.vis1.TId_proveeedor.getText());
+                int amordemivida = Integer.parseInt(cantidad);
+                int cantidad2 = Integer.parseInt(vis1.Tcantidad.getText());
+                int vali = 1;
+                if ((vis1.Tcantidad.getText().equals("0"))) {
+                    JOptionPane.showMessageDialog(null, "No puede vender 0 cantidades", "informacion", 0);
                 } else {
-                    limpiarcampos();
-                    vis1.Cproductos.setModel(mom.Combo_Productos());
-                    vis1.Ccliente.setModel(mom.Combo_nombreProveedor());
-                    JOptionPane.showMessageDialog(null, "Venta Registrada", "Información", 1);
-                    contacto1 = huevos22.BD_huevos.getConexion();
-                    DefaultTableModel model = new DefaultTableModel();
-                    model = mom.Lista_ven();
-                    vis1.tablav.setModel(model);
-                    TableColumnModel columnModel = vis1.tablav.getColumnModel();
-                    
-                    columnModel.getColumn(0).setPreferredWidth(20);
-                    columnModel.getColumn(1).setPreferredWidth(50);
-                    columnModel.getColumn(2).setPreferredWidth(50);
-                    columnModel.getColumn(3).setPreferredWidth(50);
-                    columnModel.getColumn(4).setPreferredWidth(100);
-                    columnModel.getColumn(5).setPreferredWidth(100);
-                    columnModel.getColumn(6).setPreferredWidth(120);
-                    mom.desconectar();
+                    if ((cantidad2 > amordemivida)) {
+                        JOptionPane.showMessageDialog(null, "No hay suficientes productos en bodega", "informacion", 0);
+                    } else {
+
+                        if (vali == 1) {
+                            int v = this.mom.Agre_ventita(Integer.parseInt(vis1.TId_proveeedor.getText()), Integer.parseInt(vis1.Tcantidad.getText()), Integer.parseInt(vis1.Tprecio.getText()), Integer.parseInt(vis1.TId_proveeedor1.getText()));
+                            if (v == 0) {
+                                JOptionPane.showMessageDialog(null, "No Guardado", "Informacion", 0);
+                            } else {
+                                limpiarcampos();
+                                vis1.Cproductos.setModel(mom.Combo_Productos());
+                                vis1.Ccliente.setModel(mom.Combo_nombreProveedor());
+                                JOptionPane.showMessageDialog(null, "Venta Registrada", "Información", 1);
+                                contacto1 = huevos22.BD_huevos.getConexion();
+                                DefaultTableModel model = new DefaultTableModel();
+                                model = mom.Lista_ven();
+                                vis1.tablav.setModel(model);
+                                TableColumnModel columnModel = vis1.tablav.getColumnModel();
+
+                                columnModel.getColumn(0).setPreferredWidth(20);
+                                columnModel.getColumn(1).setPreferredWidth(50);
+                                columnModel.getColumn(2).setPreferredWidth(50);
+                                columnModel.getColumn(3).setPreferredWidth(50);
+                                columnModel.getColumn(4).setPreferredWidth(100);
+                                columnModel.getColumn(5).setPreferredWidth(100);
+                                columnModel.getColumn(6).setPreferredWidth(120);
+                                mom.desconectar();
+                            }
+                        }
+                    }
                 }
-                
+
             }
         }
         if (e.getSource() == vis1.BCrear) {
-            
+
             vis1.Lpeso.setVisible(true);
             vis1.Lunid.setVisible(true);
             vis1.Lprecio.setVisible(true);
@@ -137,26 +151,25 @@ public class Controlador_ventas implements ActionListener {
             vis1.Cclientee.setVisible(false);
             vis1.Cnproducto.setVisible(false);
             vis1.BuscarP.setVisible(false);
-            
+
         }
         if (e.getSource() == vis1.Cproductos) {
             contacto1 = huevos22.BD_huevos.getConexion();
             if (this.vis1.Cproductos.getSelectedIndex() >= 0) {
                 String idproo = this.mom.idproductos(this.vis1.Cproductos.getSelectedItem().toString());
-                //String cantidad = this.mom.cantidad(this.vism.idpro.getText());
-
                 this.vis1.TId_proveeedor.setText(idproo);
-                
-                System.out.println("la id del producto es :" + idproo);
-                
+                String cantidad = this.mom.cantidad(this.vis1.TId_proveeedor.getText());
+
+                System.out.println("la id del producto es :" + idproo + "Cantidad:" + cantidad);
+
                 if (this.vis1.Cproductos.getSelectedIndex() == 0) {
                     JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA OPCIÓN", "SIN SELECCIÓN", 0);
-                    
+
                 }
             }
-            
+
         }
-        
+
         if (e.getSource() == vis1.Ccliente) {
             contacto1 = huevos22.BD_huevos.getConexion();
             if (this.vis1.Ccliente.getSelectedIndex() >= 0) {
@@ -164,19 +177,19 @@ public class Controlador_ventas implements ActionListener {
                 //String cantidad = this.mom.cantidad(this.vism.idpro.getText());
 
                 this.vis1.TId_proveeedor1.setText(idproo);
-                
+
                 System.out.println("la id del producto es :" + idproo);
-                
+
                 if (this.vis1.Ccliente.getSelectedIndex() == 0) {
                     JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA OPCIÓN", "SIN SELECCIÓN", 0);
-                    
+
                 }
             }
-            
+
         }
-        
+
         if (e.getSource() == vis1.ListaB) {
-              vis1.Lpeso.setVisible(false);
+            vis1.Lpeso.setVisible(false);
             vis1.Lunid.setVisible(false);
             vis1.Lprecio.setVisible(false);
             vis1.Lcliente.setVisible(false);
@@ -194,10 +207,9 @@ public class Controlador_ventas implements ActionListener {
             vis1.Opciones.setVisible(true);
             vis1.BuscarP.setVisible(true);
 
-            
         }
-        
-          if (e.getSource() == vis1.Opciones) {
+
+        if (e.getSource() == vis1.Opciones) {
             if (vis1.Opciones.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(null, "Seleccione Opción");
             }
@@ -300,7 +312,7 @@ public class Controlador_ventas implements ActionListener {
             model = mom.Lista_ven();
             vis1.tablav.setModel(model);
             TableColumnModel columnModel = vis1.tablav.getColumnModel();
-            
+
             columnModel.getColumn(0).setPreferredWidth(30);
             columnModel.getColumn(1).setPreferredWidth(80);
             columnModel.getColumn(2).setPreferredWidth(70);
