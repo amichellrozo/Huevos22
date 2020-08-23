@@ -818,6 +818,24 @@ public class BD_huevos {
         return precio1;
 
     }
+     
+         public int BorrarCompra(int id_compra) {
+        int estado;
+        try {
+            PreparedStatement st = contacto.prepareStatement("delete from Compra where id_compra = ?");
+
+            st.setInt(1, id_compra);
+            st.executeUpdate();
+
+            st.execute();
+            estado = 1;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            estado = 0;
+        }
+
+        return estado;
+    }
 }
 //=======
 //package huevosaj;

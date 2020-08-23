@@ -99,7 +99,7 @@ public class Controlador_ventas implements ActionListener{
         if (e.getSource() == vis1.Mostrar) {
             contacto1 = huevos22.BD_huevos.getConexion();
             DefaultTableModel model = new DefaultTableModel();
-            model = mom.Lista_Inv();
+            model = mom.Lista_ven();
             vis1.tablav.setModel(model);
             TableColumnModel columnModel = vis1.tablav.getColumnModel();
 

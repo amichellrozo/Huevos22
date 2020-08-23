@@ -32,14 +32,54 @@ public class Controlador_compras implements ActionListener {
         vis1.volver.addActionListener(this);
         vis1.Mostrar.addActionListener(this);
         vis1.Cproductos.addActionListener(this);
+        vis1.BEliminar.addActionListener(this);
         vis1.Cprobe.addActionListener(this);
         vis1.CrearP.addActionListener(this);
         vis1.Cproductos.setModel(mom.Combo_Productos());
         vis1.Cprobe.setModel(mom.Combo_nombreProveedor());
     }
 
+    public void limpiarcampos() {
+        vis1.Tprecio.setText("");
+        vis1.Tcantidad.setText("");
+        vis1.Cprobe.removeAllItems();
+        vis1.Cproductos.removeAllItems();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+                if (e.getSource() == vis1.BEliminar) {
+            int k = vis1.tablac.getSelectedRow();
+            int c = vis1.tablac.getSelectedRowCount();
+            if (k >= 0 && c == 1) {
+                vis1.TId_proveeedor.setText(String.valueOf(vis1.tablac.getValueAt(k, 0)));
+                vis1.TId_proveeedor.setEditable(false);
+                int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro de eliminar esta compra?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                contacto1 = huevos22.BD_huevos.getConexion();
+                if (resp == 0) {
+                    this.mom.BorrarCompra(Integer.parseInt(this.vis1.TId_proveeedor.getText()));
+                    JOptionPane.showMessageDialog(null, "Compra Eliminado");
+                    DefaultTableModel model = new DefaultTableModel();
+                    model = mom.Lista_compras();
+                    vis1.tablac.setModel(model);
+                    TableColumnModel columnModel = vis1.tablac.getColumnModel();
+
+                    columnModel.getColumn(0).setPreferredWidth(20);
+                    columnModel.getColumn(1).setPreferredWidth(50);
+                    columnModel.getColumn(2).setPreferredWidth(50);
+                    columnModel.getColumn(3).setPreferredWidth(50);
+                    columnModel.getColumn(4).setPreferredWidth(100);
+                    columnModel.getColumn(5).setPreferredWidth(100);
+                    columnModel.getColumn(6).setPreferredWidth(120);
+                    mom.desconectar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe aceptar la eliminación");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar una opción", "Error", 0);
+            }
+        }
         if (e.getSource() == vis1.BCrear) {
             vis1.Lpeso.setVisible(true);
             vis1.Lunid.setVisible(true);
@@ -100,6 +140,9 @@ public class Controlador_compras implements ActionListener {
                 if (v == 0) {
                     JOptionPane.showMessageDialog(null, "No Guardado", "Informacion", 0);
                 } else {
+                    limpiarcampos();
+                    vis1.Cproductos.setModel(mom.Combo_Productos());
+                    vis1.Cprobe.setModel(mom.Combo_nombreProveedor());
                     JOptionPane.showMessageDialog(null, "Compra Registrada", "Información", 1);
                     contacto1 = huevos22.BD_huevos.getConexion();
                     DefaultTableModel model = new DefaultTableModel();
@@ -108,9 +151,12 @@ public class Controlador_compras implements ActionListener {
                     TableColumnModel columnModel = vis1.tablac.getColumnModel();
 
                     columnModel.getColumn(0).setPreferredWidth(20);
-                    columnModel.getColumn(1).setPreferredWidth(100);
-                    columnModel.getColumn(2).setPreferredWidth(100);
-                    columnModel.getColumn(3).setPreferredWidth(100);
+                    columnModel.getColumn(1).setPreferredWidth(50);
+                    columnModel.getColumn(2).setPreferredWidth(50);
+                    columnModel.getColumn(3).setPreferredWidth(50);
+                    columnModel.getColumn(4).setPreferredWidth(100);
+                    columnModel.getColumn(5).setPreferredWidth(100);
+                    columnModel.getColumn(6).setPreferredWidth(120);
                     mom.desconectar();
                 }
 
@@ -135,10 +181,13 @@ public class Controlador_compras implements ActionListener {
             vis1.tablac.setModel(model);
             TableColumnModel columnModel = vis1.tablac.getColumnModel();
 
-            columnModel.getColumn(0).setPreferredWidth(20);
-            columnModel.getColumn(1).setPreferredWidth(100);
-            columnModel.getColumn(2).setPreferredWidth(100);
-            columnModel.getColumn(3).setPreferredWidth(100);
+                    columnModel.getColumn(0).setPreferredWidth(20);
+                    columnModel.getColumn(1).setPreferredWidth(50);
+                    columnModel.getColumn(2).setPreferredWidth(50);
+                    columnModel.getColumn(3).setPreferredWidth(50);
+                    columnModel.getColumn(4).setPreferredWidth(100);
+                    columnModel.getColumn(5).setPreferredWidth(100);
+                    columnModel.getColumn(6).setPreferredWidth(120);
             mom.desconectar();
         }
     }
