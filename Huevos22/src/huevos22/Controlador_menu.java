@@ -6,6 +6,7 @@
 package huevos22;
 
 import static huevos22.Controlador_Registro.contacto1;
+import static java.awt.Frame.ICONIFIED;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,9 +32,9 @@ public class Controlador_menu implements ActionListener {
         this.vs.JBventas.addActionListener(this);
         this.vs.JBinformec.addActionListener(this);
         this.vs.JBinformev.addActionListener(this);
-        this.vs.JBproductos.addActionListener(this);
         this.vs.JBinventario.addActionListener(this);
-
+        vs.JBminimizar.addActionListener(this);
+        vs.JBcerrar.addActionListener(this);
     }
 
     static Connection contacto1 = null;
@@ -61,12 +62,12 @@ public class Controlador_menu implements ActionListener {
         if (ae.getSource() == vs.JBventas) {
             Vista_ventas v2 = new Vista_ventas();
             BD_huevos m = new BD_huevos();
-           Controlador_ventas n = new Controlador_ventas(v2, m);
+            Controlador_ventas n = new Controlador_ventas(v2, m);
 
             vs.setVisible(false);
         }
-        
-         if (ae.getSource() == vs.JBcompras) {
+
+        if (ae.getSource() == vs.JBcompras) {
             Vista_compras vi = new Vista_compras();
             BD_huevos bd = new BD_huevos();
             Controlador_compras c1 = new Controlador_compras(vi, bd);
@@ -76,7 +77,19 @@ public class Controlador_menu implements ActionListener {
             Vista_inventario vi = new Vista_inventario();
             BD_huevos bd = new BD_huevos();
             Controlador_Inventario c1 = new Controlador_Inventario(vi, bd);
+        }
+        if (ae.getSource() == vs.JBinformec) {
+            Vista_informe_compras v = new Vista_informe_compras();
+            BD_huevos bd = new BD_huevos();
+            Controlador_informe_comprass c1 = new Controlador_informe_comprass(v, bd);
             vs.setVisible(false);
+        }
+        
+                if (ae.getSource() == vs.JBcerrar) {
+            System.exit(0);
+        }
+        if (ae.getSource() == vs.JBminimizar) {
+            vs.setExtendedState(ICONIFIED);
         }
     }
 
