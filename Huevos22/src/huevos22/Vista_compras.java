@@ -246,14 +246,14 @@ public class Vista_compras extends JFrame {
         tablac.setForeground(Color.white);
         panel.setBounds(60, 170, 660, 500);
 
-        String opcPP[] = {"Seleccionar Opción", "Producto", "Proveedor", "Fecha venta"};
+        String opcPP[] = {"Seleccionar Opción", "Producto", "Proveedor","Fecha venta"};
         Opciones = new JComboBox(opcPP);
         Opciones.setBackground(blanco);
         Opciones.setOpaque(false);
         Opciones.setFont(fuente2);
         Opciones.setBorder(new LineBorder(color1));
         Opciones.setForeground(color1);
-        Opciones.setBounds(100, 180, 200, 50);
+        Opciones.setBounds(100, 120, 200, 50);
         Panel1.add(Opciones);
 
         Cnproducto = new JComboBox();
@@ -262,7 +262,7 @@ public class Vista_compras extends JFrame {
         Cnproducto.setFont(fuente2);
         Cnproducto.setBorder(new LineBorder(color1));
         Cnproducto.setForeground(color1);
-        Cnproducto.setBounds(100, 280, 200, 50);
+        Cnproducto.setBounds(100, 190, 200, 50);
         Panel1.add(Cnproducto);
 
         Cproveedor = new JComboBox();
@@ -271,7 +271,7 @@ public class Vista_compras extends JFrame {
         Cproveedor.setFont(fuente2);
         Cproveedor.setBorder(new LineBorder(color1));
         Cproveedor.setForeground(color1);
-        Cproveedor.setBounds(100, 380, 200, 50);
+        Cproveedor.setBounds(100, 190, 200, 50);
         Panel1.add(Cproveedor);
 
         Cfecha = new JComboBox();
@@ -280,7 +280,7 @@ public class Vista_compras extends JFrame {
         Cfecha.setFont(fuente2);
         Cfecha.setBorder(new LineBorder(color1));
         Cfecha.setForeground(color1);
-        Cfecha.setBounds(100, 480, 200, 50);
+        Cfecha.setBounds(100, 190, 200, 50);
         Panel1.add(Cfecha);
 
         BuscarP = new JButton("Buscar compra");

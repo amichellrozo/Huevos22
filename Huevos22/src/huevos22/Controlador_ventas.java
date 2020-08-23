@@ -49,6 +49,9 @@ public class Controlador_ventas implements ActionListener {
         vis1.Tcantidad.setText("");
         vis1.Ccliente.removeAllItems();
         vis1.Cproductos.removeAllItems();
+        vis1.Cnproducto.removeAllItems();
+        vis1.Cfecha.removeAllItems();
+           vis1.Cclientee.removeAllItems();
     }
 
     @Override
@@ -151,6 +154,8 @@ public class Controlador_ventas implements ActionListener {
             vis1.Cclientee.setVisible(false);
             vis1.Cnproducto.setVisible(false);
             vis1.BuscarP.setVisible(false);
+         vis1.Cproductos.setModel(mom.Combo_Productos());
+        vis1.Ccliente.setModel(mom.Combo_nombrecliente());
 
         }
         if (e.getSource() == vis1.Cproductos) {
@@ -206,6 +211,10 @@ public class Controlador_ventas implements ActionListener {
 
             vis1.Opciones.setVisible(true);
             vis1.BuscarP.setVisible(true);
+                    vis1.Cnproducto.setModel(mom.combo_pro());
+        vis1.Cclientee.setModel(mom.combo_clientes());
+        vis1.Cfecha.setModel(mom.combo_fecha());
+            
 
         }
 
@@ -254,6 +263,8 @@ public class Controlador_ventas implements ActionListener {
                     JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA OPCIÓN", "SIN SELECCIÓN", 0);
                     mom.desconectar();
                 }
+                        vis1.Cnproducto.setModel(mom.combo_pro());
+
             }
 
             if (vis1.Opciones.getSelectedIndex() == 2) {
@@ -273,6 +284,8 @@ public class Controlador_ventas implements ActionListener {
                     JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA OPCIÓN", "SIN SELECCIÓN", 0);
                     mom.desconectar();
                 }
+                        vis1.Cclientee.setModel(mom.combo_clientes());
+     
             }
 
             if (vis1.Opciones.getSelectedIndex() == 3) {
@@ -292,6 +305,7 @@ public class Controlador_ventas implements ActionListener {
                     JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA OPCIÓN", "SIN SELECCIÓN", 0);
                     mom.desconectar();
                 }
+                   vis1.Cfecha.setModel(mom.combo_fecha());
             }
         }
         if (e.getSource() == vis1.CerrarB) {

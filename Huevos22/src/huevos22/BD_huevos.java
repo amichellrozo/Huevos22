@@ -873,6 +873,30 @@ public class BD_huevos {
         }
         return modelo;
     }
+    
+      public String cantidad(String cantidad) {
+        ResultSet result;
+        String precio1 = null;
+        try {
+            PreparedStatement st = contacto.prepareStatement("select Ex.cantidad_producto  from Existencia Ex\n"
+                    + "where Ex.id_producto=?");
+ 
+            st.setString(1, cantidad);
+
+            st.execute();
+            result = st.executeQuery();
+                       System.out.println("salecantidad");
+            while (result.next()) {
+                precio1 = result.getString("cantidad_producto");
+                System.out.println("cantidad"+precio1);
+
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return precio1;
+
+    }  
       
 
     //COMPRAS----------------------------------------------------------------------------------------------------------------------
@@ -1029,29 +1053,140 @@ public class BD_huevos {
 
         return estado;
     }
-                
-           public String cantidad(String cantidad) {
-        ResultSet result;
-        String precio1 = null;
+         
+             public DefaultComboBoxModel combo_proc() {
+        DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+        listaModelo.addElement("Seleccione");
+        ResultSet res = this.Consulta("select P.nombre_producto\n"
+                + "                from Compra C,Producto P\n"
+                + "                where C.id_producto= P.id_producto\n"
+                + "                group by P.nombre_producto");
         try {
-            PreparedStatement st = contacto.prepareStatement("select Ex.cantidad_producto  from Existencia Ex\n"
-                    + "where Ex.id_producto=?");
- 
-            st.setString(1, cantidad);
+            while (res.next()) {
+                listaModelo.addElement(res.getString("nombre_producto"));
+            }
+            res.close();
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+        }
+        return listaModelo;
+    }
 
-            st.execute();
+    public DefaultComboBoxModel combo_prove() {
+        DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+        listaModelo.addElement("Seleccione");
+        ResultSet res = this.Consulta("select P.primernombre_proveedor\n"
+                + "                from Compra C,Proveedor P\n"
+                + "                where C.id_proveedor= P.id_proveedor\n"
+                + "                group by P.primernombre_proveedor");
+        try {
+            while (res.next()) {
+                listaModelo.addElement(res.getString("primernombre_proveedor"));
+            }
+            res.close();
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+        }
+        return listaModelo;
+    }
+
+    public DefaultComboBoxModel combo_fechac() {
+        DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+        listaModelo.addElement("Seleccione");
+        ResultSet res = this.Consulta("select C.fecha_compra\n"
+                + "from Compra C\n"
+                + "group by C.fecha_compra");
+        try {
+            while (res.next()) {
+                listaModelo.addElement(res.getString("fecha_compra"));
+            }
+            res.close();
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+        }
+        return listaModelo;
+    }
+
+    public DefaultTableModel Buscar_compras(String Dato, int opcion) {
+        System.out.print(Dato);
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if (column == 9) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        };
+        String campoDB = "";
+        ResultSet result;
+        try {
+            if (opcion == 1) {
+
+                campoDB = "select C.id_compra,\n"
+                        + "                    P.nombre_producto,\n"
+                        + "                    C.cantidad_comrpa 'Cantidad por unidad',\n"
+                        + "                    (C.cantidad_comrpa/30) as 'Cantidad Cubetas',\n"
+                        + "                    C.total_compra,\n"
+                        + "                    C.fecha_compra,\n"
+                        + "                    CONCAT(PV.primernombre_proveedor,' ',PV.primerapellido_proveedor) as 'Proveedor'\n"
+                        + "                    from  Producto P, Compra C, Proveedor PV\n"
+                        + "                    where P.id_producto=C.id_producto AND\n"
+                        + "                    C.id_proveedor=PV.id_proveedor and P.nombre_producto=" + "'" + Dato + "'";
+            }
+
+            if (opcion == 2) {
+                campoDB = "select C.id_compra,\n"
+                        + "                    P.nombre_producto,\n"
+                        + "                    C.cantidad_comrpa 'Cantidad por unidad',\n"
+                        + "                    (C.cantidad_comrpa/30) as 'Cantidad Cubetas',\n"
+                        + "                    C.total_compra,\n"
+                        + "                    C.fecha_compra,\n"
+                        + "                   CONCAT(PV.primernombre_proveedor,' ',PV.primerapellido_proveedor) as 'Proveedor'\n"
+                        + "                    from  Producto P, Compra C, Proveedor PV\n"
+                        + "                    where P.id_producto=C.id_producto AND\n"
+                        + "                    C.id_proveedor=PV.id_proveedor and PV.primernombre_proveedor=" + "'" + Dato + "'";
+            }
+            if (opcion == 3) {
+                campoDB = "select C.id_compra,\n"
+                        + "                    P.nombre_producto,\n"
+                        + "                    C.cantidad_comrpa 'Cantidad por unidad',\n"
+                        + "                    (C.cantidad_comrpa/30) as 'Cantidad Cubetas',\n"
+                        + "                    C.total_compra,\n"
+                        + "                    C.fecha_compra,\n"
+                        + "                   CONCAT(PV.primernombre_proveedor,' ',PV.primerapellido_proveedor) as 'Proveedor'\n"
+                        + "                    from  Producto P, Compra C, Proveedor PV\n"
+                        + "                    where P.id_producto=C.id_producto AND\n"
+                        + "                    C.id_proveedor=PV.id_proveedor and  C.fecha_compra= " + "'" + Dato + "'";
+            }
+            PreparedStatement st = contacto.prepareStatement(campoDB);
+
             result = st.executeQuery();
-                       System.out.println("salecantidad");
+            ResultSetMetaData rmsd = result.getMetaData();
+            int canCol = rmsd.getColumnCount();
+            canCol += 1;
+            for (int i = 1; i < canCol; i++) {
+                String title[] = {"", "ID", "P Nombre", "S Nombre", "P Apellido", "S Apellido", "Dirección", "Telefono", "Correo"};
+                modelo.addColumn(title[i]);
+            }
+            canCol = canCol - 1;
             while (result.next()) {
-                precio1 = result.getString("cantidad_producto");
-                System.out.println("cantidad"+precio1);
-
+                Object[] fila = new Object[canCol];
+                for (int i = 0; i < canCol; i++) {
+                    fila[i] = result.getObject(i + 1);
+                }
+//              
+                modelo.addRow(fila);
             }
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-        return precio1;
 
-    }  
+        }
+        return modelo;
+    }
+    ///EXISTENCIA
+                
+         
           
 }
