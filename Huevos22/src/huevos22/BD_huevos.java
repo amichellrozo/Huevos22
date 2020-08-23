@@ -735,6 +735,89 @@ public class BD_huevos {
         }
         return modelo;
     }
+    
+    public int Agre_Com(int id_producto, int cantidad_comrpa, int total_compra,
+            int id_proveedor) {
+        int estado;
+        try {
+
+            PreparedStatement st = contacto.prepareStatement("insert Compra (id_producto,cantidad_comrpa,total_compra,id_proveedor) values (?,?,?,?)");
+            st.setInt(1, id_producto);
+            st.setInt(2, cantidad_comrpa);
+            st.setInt(3, total_compra);
+            st.setInt(4, id_proveedor);
+            st.execute();
+            estado = 1;
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            estado = 0;
+        }
+
+        return estado;
+    }
+    
+        public DefaultComboBoxModel Combo_Productos() {
+        DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+        listaModelo.addElement("Seleccione");
+        ResultSet res = this.Consulta("select * from Producto");
+        try {
+            while (res.next()) {
+                listaModelo.addElement(res.getString("nombre_producto"));
+            }
+            res.close();
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+        }
+        return listaModelo;
+    }
+    public String idproductos(String idpro) {
+        ResultSet result;
+        String precio1 = null;
+        try {
+
+            PreparedStatement st = contacto.prepareStatement("select p.id_producto\n"
+                    + "from Producto p\n"
+                    + "where p.nombre_producto= ?");
+            System.out.println("saleid");
+            st.setString(1, idpro);
+
+            st.execute();
+            result = st.executeQuery();
+            while (result.next()) {
+                precio1 = result.getString("id_producto");
+
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return precio1;
+
+    }
+    
+     public String idproveedor(String idpro) {
+        ResultSet result;
+        String precio1 = null;
+        try {
+
+            PreparedStatement st = contacto.prepareStatement("select p.id_proveedor\n"
+                    + "from Proveedor p\n"
+                    + "where p.primernombre_proveedor= ?");
+            System.out.println("saleid");
+            st.setString(1, idpro);
+
+            st.execute();
+            result = st.executeQuery();
+            while (result.next()) {
+                precio1 = result.getString("id_proveedor");
+
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return precio1;
+
+    }
 }
 //=======
 //package huevosaj;

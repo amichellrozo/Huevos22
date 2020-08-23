@@ -26,9 +26,9 @@ import javax.swing.border.LineBorder;
  */
 public class Vista_compras extends JFrame {
 
-  JPanel Panel1, Panel2;
-    JLabel Titulo, LProduto, LCantidad, Lprecio, Lcliente, Lunid, Lpeso, Logo,Lidc;
-    JTextField Tcantidad, Tprecio;
+    JPanel Panel1, Panel2;
+    JLabel Titulo, LProduto, LCantidad, Lprecio, Lcliente, Lunid, Lpeso, Logo, Lidc;
+    JTextField Tcantidad, Tprecio,TId_proveeedor,TId_proveeedor1;
     JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ListaB, Mostrar, ActualizarC, BuscarP;
     ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ListaI, imagen;
     JSeparator JS1, JS2, JS3, JS4;
@@ -44,8 +44,9 @@ public class Vista_compras extends JFrame {
     Color color2 = new Color(220, 91, 5);
     Color blanco = new Color(255, 255, 255);
     Color negro = new Color(0, 0, 0);
-    Vista_compras(){
-        
+
+    Vista_compras() {
+
         setTitle("Compras");
         setSize(1250, 720);
         setLayout(null);
@@ -115,7 +116,24 @@ public class Vista_compras extends JFrame {
         ImageIcon pfee = new ImageIcon(ListaI.getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_DEFAULT));
         ListaB.setIcon(pfee);
         ListaB.setBounds(590, 25, 80, 80);
+        TId_proveeedor = new JTextField("");
+        TId_proveeedor.setBounds(130, 600, 240, 27);
+        TId_proveeedor.setFont(fuente2);
+        TId_proveeedor.setForeground(color2);
+        TId_proveeedor.setBorder(thickBorder);
 
+        Panel2.add(TId_proveeedor);
+        TId_proveeedor.setVisible(false);
+
+        TId_proveeedor1 = new JTextField("");
+        TId_proveeedor1.setBounds(130, 640, 240, 27);
+        TId_proveeedor1.setFont(fuente2);
+        TId_proveeedor1.setForeground(color2);
+        TId_proveeedor1.setBorder(thickBorder);
+
+        Panel2.add(TId_proveeedor1);
+        TId_proveeedor1.setVisible(false);
+        
         CrearP = new JButton("Agregar Compra");
         CrearP.setBounds(130, 590, 190, 50);
         CrearP.setBackground(color1);
@@ -177,8 +195,8 @@ public class Vista_compras extends JFrame {
         Lpeso.setFont(fuente2);
         Lpeso.setForeground(color2);
         Panel1.add(Lpeso);
-        
-                Lidc = new JLabel(" ");
+
+        Lidc = new JLabel(" ");
         Lidc.setBounds(80, 410, 50, 50);
         Lidc.setFont(fuente2);
         Lidc.setForeground(color2);
@@ -228,9 +246,7 @@ public class Vista_compras extends JFrame {
         tablac.setForeground(Color.white);
         panel.setBounds(60, 170, 660, 500);
 
-        
-        
-        String opcPP[] = {"Seleccionar Opción", "Producto", "Proveedor","Fecha venta"};
+        String opcPP[] = {"Seleccionar Opción", "Producto", "Proveedor", "Fecha venta"};
         Opciones = new JComboBox(opcPP);
         Opciones.setBackground(blanco);
         Opciones.setOpaque(false);
@@ -266,14 +282,14 @@ public class Vista_compras extends JFrame {
         Cfecha.setForeground(color1);
         Cfecha.setBounds(100, 480, 200, 50);
         Panel1.add(Cfecha);
-        
+
         BuscarP = new JButton("Buscar compra");
         BuscarP.setBounds(110, 580, 180, 50);
         BuscarP.setBackground(color1);
         BuscarP.setForeground(color2);
         BuscarP.setFont(fuente2);
         Panel1.add(BuscarP);
-        
+
         volver = new JButton(Minimizar);
         volver.setContentAreaFilled(false);
         volver.setBorderPainted(false);
@@ -283,10 +299,9 @@ public class Vista_compras extends JFrame {
         volver.setIcon(de);
         volver.setBounds(400, 670, 35, 35);
         Panel1.add(volver);
-        
 
-       Lidc.setVisible(false);
-              LProduto.setVisible(false);
+        Lidc.setVisible(false);
+        LProduto.setVisible(false);
         LCantidad.setVisible(false);
         Lprecio.setVisible(false);
         Lcliente.setVisible(false);
@@ -321,7 +336,7 @@ public class Vista_compras extends JFrame {
         this.add(Panel2);
         this.add(Panel1);
 
-    this.setUndecorated(true);
+        this.setUndecorated(true);
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.WHITE);
         setVisible(true);
