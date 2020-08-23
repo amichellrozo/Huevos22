@@ -173,7 +173,7 @@ public class Vista_menu extends javax.swing.JFrame {
         VolverI = new ImageIcon("volver.png");
         ImageIcon de = new ImageIcon(VolverI.getImage().getScaledInstance(35, 35, java.awt.Image.SCALE_DEFAULT));
         volver.setIcon(de);
-        volver.setBounds(1100, 670, 35, 35);
+        volver.setBounds(1140, 670, 35, 35);
 
         JLmenu = new JLabel("MENÚ");
         JLmenu.setForeground(Azul);
