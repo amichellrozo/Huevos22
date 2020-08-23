@@ -234,7 +234,6 @@ public class Vista_clientes extends JFrame {
         VolverI = new ImageIcon("volver.png");
         ImageIcon de = new ImageIcon(VolverI.getImage().getScaledInstance(35, 35, java.awt.Image.SCALE_DEFAULT));
         volver.setIcon(de);
-
         volver.setBounds(400, 670, 35, 35);
 
         JS1 = new JSeparator(JSeparator.HORIZONTAL);
