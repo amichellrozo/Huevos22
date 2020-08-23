@@ -37,6 +37,10 @@ public class Controlador_ventas implements ActionListener {
         vis1.Ccliente.addActionListener(this);
         vis1.Cproductos.setModel(mom.Combo_Productos());
         vis1.Ccliente.setModel(mom.Combo_nombrecliente());
+         vis1.Cnproducto.setModel(mom.combo_pro());
+        vis1.Cclientee.setModel(mom.combo_clientes());
+        vis1.Cfecha.setModel(mom.combo_fecha());
+        vis1.Opciones.addActionListener(this);
         vis1.BEliminar.addActionListener(this);
     }
     
@@ -172,7 +176,7 @@ public class Controlador_ventas implements ActionListener {
         }
         
         if (e.getSource() == vis1.ListaB) {
-            vis1.Lpeso.setVisible(false);
+              vis1.Lpeso.setVisible(false);
             vis1.Lunid.setVisible(false);
             vis1.Lprecio.setVisible(false);
             vis1.Lcliente.setVisible(false);
@@ -185,15 +189,98 @@ public class Controlador_ventas implements ActionListener {
             vis1.JS1.setVisible(false);
             vis1.JS2.setVisible(false);
             vis1.CrearP.setVisible(false);
-            vis1.Logo.setVisible(false);
-            
+            vis1.Logo.setVisible(true);
+
             vis1.Opciones.setVisible(true);
-            
-            vis1.Cfecha.setVisible(true);
-            vis1.Cclientee.setVisible(true);
-            vis1.Cnproducto.setVisible(true);
             vis1.BuscarP.setVisible(true);
+
             
+        }
+        
+          if (e.getSource() == vis1.Opciones) {
+            if (vis1.Opciones.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(null, "Seleccione Opción");
+            }
+            if (vis1.Opciones.getSelectedIndex() == 1) {
+                vis1.Cfecha.setVisible(false);
+                vis1.Cclientee.setVisible(false);
+                vis1.Cnproducto.setVisible(true);
+
+            }
+            if (vis1.Opciones.getSelectedIndex() == 2) {
+                vis1.Cfecha.setVisible(false);
+                vis1.Cclientee.setVisible(true);
+                vis1.Cnproducto.setVisible(false);
+
+            }
+            if (vis1.Opciones.getSelectedIndex() == 3) {
+                vis1.Cfecha.setVisible(true);
+                vis1.Cclientee.setVisible(false);
+                vis1.Cnproducto.setVisible(false);
+
+            }
+        }
+
+        if (e.getSource() == vis1.BuscarP) {
+            if (vis1.Opciones.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(null, "Seleccione Opción");
+            }
+            if (vis1.Opciones.getSelectedIndex() == 1) {
+                contacto1 = huevos22.BD_huevos.getConexion();
+                vis1.tablav.setModel(this.mom.Buscar_venta(vis1.Cnproducto.getSelectedItem().toString(), vis1.Opciones.getSelectedIndex()));
+                TableColumnModel columnModel = vis1.tablav.getColumnModel();
+
+                columnModel.getColumn(0).setPreferredWidth(30);
+                columnModel.getColumn(1).setPreferredWidth(80);
+                columnModel.getColumn(2).setPreferredWidth(70);
+                columnModel.getColumn(3).setPreferredWidth(70);
+                columnModel.getColumn(4).setPreferredWidth(80);
+                columnModel.getColumn(5).setPreferredWidth(80);
+                columnModel.getColumn(6).setPreferredWidth(100);
+
+                if (this.vis1.Cnproducto.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA OPCIÓN", "SIN SELECCIÓN", 0);
+                    mom.desconectar();
+                }
+            }
+
+            if (vis1.Opciones.getSelectedIndex() == 2) {
+                contacto1 = huevos22.BD_huevos.getConexion();
+                vis1.tablav.setModel(this.mom.Buscar_venta(vis1.Cclientee.getSelectedItem().toString(), vis1.Opciones.getSelectedIndex()));
+                TableColumnModel columnModel = vis1.tablav.getColumnModel();
+
+                columnModel.getColumn(0).setPreferredWidth(30);
+                columnModel.getColumn(1).setPreferredWidth(80);
+                columnModel.getColumn(2).setPreferredWidth(70);
+                columnModel.getColumn(3).setPreferredWidth(70);
+                columnModel.getColumn(4).setPreferredWidth(80);
+                columnModel.getColumn(5).setPreferredWidth(80);
+                columnModel.getColumn(6).setPreferredWidth(100);
+
+                if (this.vis1.Cclientee.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA OPCIÓN", "SIN SELECCIÓN", 0);
+                    mom.desconectar();
+                }
+            }
+
+            if (vis1.Opciones.getSelectedIndex() == 3) {
+                contacto1 = huevos22.BD_huevos.getConexion();
+                vis1.tablav.setModel(this.mom.Buscar_venta(vis1.Cfecha.getSelectedItem().toString(), vis1.Opciones.getSelectedIndex()));
+                TableColumnModel columnModel = vis1.tablav.getColumnModel();
+
+                columnModel.getColumn(0).setPreferredWidth(30);
+                columnModel.getColumn(1).setPreferredWidth(80);
+                columnModel.getColumn(2).setPreferredWidth(70);
+                columnModel.getColumn(3).setPreferredWidth(70);
+                columnModel.getColumn(4).setPreferredWidth(80);
+                columnModel.getColumn(5).setPreferredWidth(80);
+                columnModel.getColumn(6).setPreferredWidth(100);
+
+                if (this.vis1.Cfecha.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA OPCIÓN", "SIN SELECCIÓN", 0);
+                    mom.desconectar();
+                }
+            }
         }
         if (e.getSource() == vis1.CerrarB) {
             System.exit(0);
