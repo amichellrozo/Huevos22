@@ -113,6 +113,14 @@ public class Vista_ventas extends JFrame {
         LProduto.setBounds(50, 160, 170, 50);
         LProduto.setFont(fuente2);
         LProduto.setForeground(color2);
+        
+        Cproductos = new JComboBox();
+        Cproductos.setBackground(color1);
+        Cproductos.setOpaque(false);
+        Cproductos.setFont(fuente2);
+        Cproductos.setBorder(new LineBorder(Color.white));
+        Cproductos.setForeground(color2);
+        Cproductos.setBounds(50, 200, 200, 50);
 
         LCantidad = new JLabel("Cantidad:");
         LCantidad.setBounds(50, 260, 170, 50);
@@ -124,6 +132,11 @@ public class Vista_ventas extends JFrame {
         Tcantidad.setFont(fuente2);
         Tcantidad.setForeground(color2);
         Tcantidad.setBorder(thickBorder);
+        
+        JS2 = new JSeparator(JSeparator.HORIZONTAL);
+        JS2.setForeground(color2);
+        JS2.setBounds(50, 327, 190, 30);
+        Panel1.add(JS2);
 
         Lprecio = new JLabel("Total:");
         Lprecio.setBounds(50, 360, 170, 50);
@@ -135,9 +148,10 @@ public class Vista_ventas extends JFrame {
         Tprecio.setFont(fuente2);
         Tprecio.setForeground(color2);
         Tprecio.setBorder(thickBorder);
+        
         JS1 = new JSeparator(JSeparator.HORIZONTAL);
         JS1.setForeground(color2);
-        JS1.setBounds(200, 175, 190, 30);
+        JS1.setBounds(50, 427, 190, 30);
         Panel1.add(JS1);
 
         Lcliente = new JLabel("Cliente:");
@@ -153,6 +167,13 @@ public class Vista_ventas extends JFrame {
         Mostrar.setBounds(300, 670, 180, 45);
         Panel2.add(Mostrar);
 
+        
+         tablav = new JTable();
+        tablav = new JTable() {
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
         panel = new JScrollPane(tablav);// debe ir aqui pare evitar errores
         tablav.getTableHeader().setReorderingAllowed(false);//Orden de las columnas
         tablav.getTableHeader().setResizingAllowed(false);// orden
@@ -169,6 +190,7 @@ public class Vista_ventas extends JFrame {
         Panel1.add(LCantidad);
         Panel1.add(Lprecio);
         Panel1.add(Lcliente);
+        Panel2.add(panel);
 
         Panel2.add(ListaB);
         Panel1.add(CerrarB);
