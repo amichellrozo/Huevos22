@@ -7,6 +7,7 @@ package huevos22;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,7 +29,7 @@ public class Vista_compras extends JFrame {
 
     JPanel Panel1, Panel2;
     JLabel Titulo, LProduto, LCantidad, Lprecio, Lcliente, Lunid, Lpeso, Logo, Lidc;
-    JTextField Tcantidad, Tprecio,TId_proveeedor,TId_proveeedor1;
+    JTextField Tcantidad, Tprecio, TId_proveeedor, TId_proveeedor1;
     JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ListaB, Mostrar, ActualizarC, BuscarP;
     ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ListaI, imagen;
     JSeparator JS1, JS2, JS3, JS4;
@@ -50,6 +51,9 @@ public class Vista_compras extends JFrame {
         setTitle("Compras");
         setSize(1250, 720);
         setLayout(null);
+        ImageIcon favicon = new ImageIcon("gallina.ico");//img pola
+        Image iconog = favicon.getImage();// la polita
+        this.setIconImage(iconog);
 
         Panel1 = new JPanel();
         Panel1.setLayout(null);
@@ -133,7 +137,7 @@ public class Vista_compras extends JFrame {
 
         Panel2.add(TId_proveeedor1);
         TId_proveeedor1.setVisible(false);
-        
+
         CrearP = new JButton("Agregar Compra");
         CrearP.setBounds(130, 590, 190, 50);
         CrearP.setBackground(color1);
@@ -246,7 +250,7 @@ public class Vista_compras extends JFrame {
         tablac.setForeground(Color.white);
         panel.setBounds(60, 170, 660, 500);
 
-        String opcPP[] = {"Seleccionar Opción", "Producto", "Proveedor","Fecha venta"};
+        String opcPP[] = {"Seleccionar Opción", "Producto", "Proveedor", "Fecha venta"};
         Opciones = new JComboBox(opcPP);
         Opciones.setBackground(blanco);
         Opciones.setOpaque(false);

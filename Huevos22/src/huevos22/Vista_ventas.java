@@ -7,6 +7,7 @@ package huevos22;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,7 +29,7 @@ public class Vista_ventas extends JFrame {
 
     JPanel Panel1, Panel2;
     JLabel Titulo, LProduto, LCantidad, Lprecio, Lcliente, Lunid, Lpeso, Logo, Lidv;
-    JTextField Tcantidad, Tprecio,TId_proveeedor,TId_proveeedor1,TId_proveeedor2;
+    JTextField Tcantidad, Tprecio, TId_proveeedor, TId_proveeedor1, TId_proveeedor2;
     JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ListaB, Mostrar, ActualizarC, BuscarP;
     ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ListaI, imagen;
     JSeparator JS1, JS2, JS3, JS4;
@@ -49,7 +50,9 @@ public class Vista_ventas extends JFrame {
         setTitle("Ventas");
         setSize(1250, 720);
         setLayout(null);
-
+        ImageIcon favicon = new ImageIcon("gallina.ico");//img pola
+        Image iconog = favicon.getImage();// la polita
+        this.setIconImage(iconog);
         Panel1 = new JPanel();
         Panel1.setLayout(null);
         Panel1.setBackground(Color.WHITE);
@@ -145,7 +148,7 @@ public class Vista_ventas extends JFrame {
 
         Panel2.add(TId_proveeedor1);
         TId_proveeedor1.setVisible(false);
-        
+
         TId_proveeedor2 = new JTextField("");
         TId_proveeedor2.setBounds(180, 640, 240, 27);
         TId_proveeedor2.setFont(fuente2);

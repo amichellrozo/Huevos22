@@ -7,6 +7,7 @@ package huevos22;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,9 +22,9 @@ public class Vista_menu extends javax.swing.JFrame {
 
     JPanel JPmenu;
     JLabel JLClientes, JLproveedores, JLcompras, JLventas, JLproductos,
-            JLinventario, JLinformev, JLinformec, JLcerrarsesion, JLmenu,JLfondoprincipal;
+            JLinventario, JLinformev, JLinformec, JLcerrarsesion, JLmenu, JLfondoprincipal;
     ImageIcon Icliente, Iproveedores, Icompras, Iventas, Iproductos,
-            Iinventario, Iinformev, Iinformec, Icerrar, Iminimizar, Icerrarsesion,IMprincipal;
+            Iinventario, Iinformev, Iinformec, Icerrar, Iminimizar, Icerrarsesion, IMprincipal;
     JButton JBclientes, JBproveedores, JBcompras, JBventas, JBproductos,
             JBinventario, JBinformev, JBinformec, JBcerrar, JBminimizar, JBcerrarsesion;
     Font fuentetitulo = new Font("Microsoft JhengHei Light", Font.BOLD, 50);
@@ -36,8 +37,11 @@ public class Vista_menu extends javax.swing.JFrame {
         setTitle("INICIO DE SESIÓN ");
         setSize(1250, 720);
         setLayout(null);
-        
-                JLfondoprincipal = new JLabel();
+        ImageIcon favicon = new ImageIcon("gallina.ico");//img pola
+        Image iconog = favicon.getImage();// la polita
+        this.setIconImage(iconog);
+
+        JLfondoprincipal = new JLabel();
         IMprincipal = new ImageIcon("fondo.png");
         ImageIcon iconoEscala = new ImageIcon(IMprincipal.getImage().getScaledInstance(1250, 720, java.awt.Image.SCALE_DEFAULT));
         JLfondoprincipal.setIcon(iconoEscala);
@@ -199,15 +203,10 @@ public class Vista_menu extends javax.swing.JFrame {
         JBproveedores.setBounds(730, 430, 100, 100);
         JBinformev.setBounds(1040, 430, 100, 100);
         JLmenu.setBounds(550, 10, 250, 100);
-        
-      
-     
-        
-        
-        
+
         JBminimizar.setBounds(1140, 10, 35, 35);
         JBcerrar.setBounds(1190, 10, 35, 35);
-      JBcerrarsesion.setBounds(0, 0, 100, 100);
+        JBcerrarsesion.setBounds(0, 0, 100, 100);
         JPmenu.add(JLcompras);
         JPmenu.add(JLventas);
         JPmenu.add(JLproductos);
@@ -234,9 +233,9 @@ public class Vista_menu extends javax.swing.JFrame {
 
         JPmenu.add(JBminimizar);
         JPmenu.add(JBcerrar);
-         JPmenu.add(JBcerrar);
-         JPmenu.add(JLfondoprincipal);
-       
+        JPmenu.add(JBcerrar);
+        JPmenu.add(JLfondoprincipal);
+
 //        JPmenu.add(JBcerrarsesion);
         this.add(JPmenu);
 

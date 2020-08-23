@@ -19,7 +19,7 @@ import javax.swing.border.LineBorder;
 public class Vista_inventario extends JFrame {
 
     JPanel Panel1, Panel2;
-    JLabel Titulo,Titulo1, Logo;
+    JLabel Titulo, Titulo1, Logo;
     JTextField TPNombre;
     Font fuente1 = new Font("Microsoft JhengHei Light", Font.PLAIN, 50);
     Font fuente2 = new Font("Microsoft JhengHei Light", Font.PLAIN, 18);
@@ -37,6 +37,10 @@ public class Vista_inventario extends JFrame {
         setTitle("Menu");
         setSize(1250, 720);
         setLayout(null);
+
+        ImageIcon favicon = new ImageIcon("gallina.ico");//img pola
+        Image iconog = favicon.getImage();// la polita
+        this.setIconImage(iconog);
 
         JPanel Panel1 = new JPanel();
         Panel1.setLayout(null);

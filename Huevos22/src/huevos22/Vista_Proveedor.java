@@ -30,7 +30,7 @@ public class Vista_Proveedor extends JFrame {
     Color color1 = new Color(110, 197, 184);
     Color color2 = new Color(220, 91, 5);
     Border thickBorder = new LineBorder(Color.white, 2);
-      Color blanco = new Color(255, 255, 255);
+    Color blanco = new Color(255, 255, 255);
     Color negro = new Color(0, 0, 0);
     JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ActualizarB, ListaB, Mostrar, ActualizarP, BuscarP;
     ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ActualizarI, ListaI, imagen, MostrarI;
@@ -44,6 +44,9 @@ public class Vista_Proveedor extends JFrame {
         setTitle("Menu");
         setSize(1250, 720);
         setLayout(null);
+        ImageIcon favicon = new ImageIcon("gallina.ico");//img pola
+        Image iconog = favicon.getImage();// la polita
+        this.setIconImage(iconog);
 
         JPanel Panel1 = new JPanel();
         Panel1.setLayout(null);

@@ -7,6 +7,7 @@ package huevos22;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -36,19 +37,23 @@ public class Vista_clientes extends JFrame {
     JScrollPane panel;
     Border thickBorder = new LineBorder(Color.white, 2);
     JComboBox Opciones, Nombres, Telefonos;
-        String Titulos[] = {"Nombre", "Apellido", "Edad"};
+    String Titulos[] = {"Nombre", "Apellido", "Edad"};
     Font fuente1 = new Font("Microsoft JhengHei Light", Font.PLAIN, 50);
     Font fuente2 = new Font("Microsoft JhengHei Light", Font.PLAIN, 18);
     Font fuente3 = new Font("Microsoft JhengHei Light", Font.PLAIN, 15);
     Color color1 = new Color(110, 197, 184);
     Color color2 = new Color(220, 91, 5);
-     Color blanco = new Color(255, 255, 255);
+    Color blanco = new Color(255, 255, 255);
     Color negro = new Color(0, 0, 0);
 
     Vista_clientes() {
         setTitle("Clientes");
         setSize(1250, 720);
         setLayout(null);
+
+        ImageIcon favicon = new ImageIcon("gallina.ico");//img pola
+        Image iconog = favicon.getImage();// la polita
+        this.setIconImage(iconog);
 
         Panel1 = new JPanel();
         Panel1.setLayout(null);
@@ -334,14 +339,10 @@ public class Vista_clientes extends JFrame {
         Telefonos.setVisible(false);
         BuscarP.setVisible(false);
 
-
         imagen = new ImageIcon("Logo1.png");
         Logo = new JLabel(imagen);
         Logo.setBounds(20, 20, 410, 680);
 
-//        panel = new JScrollPane(tablac);
-//        tablac = new JTable();
-//        panel.setBounds(60, 170, 660, 500);
         tablac = new JTable();
         tablac = new JTable() {
             public boolean isCellEditable(int rowIndex, int colIndex) {
