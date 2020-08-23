@@ -591,8 +591,8 @@ public class BD_huevos {
     }
 
     //VENTAS
-    public DefaultTableModel 
-        Lista_ven() {
+    public DefaultTableModel
+            Lista_ven() {
 
         DefaultTableModel modelo = new DefaultTableModel() {
             @Override
@@ -641,8 +641,8 @@ public class BD_huevos {
         }
         return modelo;
     }
-        
-          public int BorrarVenta(int id_compra) {
+
+    public int BorrarVenta(int id_compra) {
         int estado;
         try {
             PreparedStatement st = contacto.prepareStatement("delete from Venta where id_venta = ?");
@@ -659,7 +659,8 @@ public class BD_huevos {
 
         return estado;
     }
-           public String idcliente(String idpro) {
+
+    public String idcliente(String idpro) {
         ResultSet result;
         String precio1 = null;
         try {
@@ -682,7 +683,8 @@ public class BD_huevos {
         return precio1;
 
     }
-            public int Agre_ventita(int id_producto, int cantidad_venta, int total_venta,
+
+    public int Agre_ventita(int id_producto, int cantidad_venta, int total_venta,
             int id_cliente) {
         int estado;
         try {
@@ -702,7 +704,8 @@ public class BD_huevos {
 
         return estado;
     }
- public DefaultComboBoxModel combo_pro() {
+
+    public DefaultComboBoxModel combo_pro() {
         DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
         listaModelo.addElement("Seleccione");
         ResultSet res = this.Consulta("select P.nombre_producto\n"
@@ -833,6 +836,7 @@ public class BD_huevos {
         }
         return modelo;
     }
+
     //INVENTARIO-------------------------------------------------------------------------------
     public DefaultTableModel Lista_Inv() {
 
@@ -873,22 +877,22 @@ public class BD_huevos {
         }
         return modelo;
     }
-    
-      public String cantidad(String cantidad) {
+
+    public String cantidad(String cantidad) {
         ResultSet result;
         String precio1 = null;
         try {
             PreparedStatement st = contacto.prepareStatement("select Ex.cantidad_producto  from Existencia Ex\n"
                     + "where Ex.id_producto=?");
- 
+
             st.setString(1, cantidad);
 
             st.execute();
             result = st.executeQuery();
-                       System.out.println("salecantidad");
+            System.out.println("salecantidad");
             while (result.next()) {
                 precio1 = result.getString("cantidad_producto");
-                System.out.println("cantidad"+precio1);
+                System.out.println("cantidad" + precio1);
 
             }
         } catch (SQLException ex) {
@@ -896,8 +900,7 @@ public class BD_huevos {
         }
         return precio1;
 
-    }  
-      
+    }
 
     //COMPRAS----------------------------------------------------------------------------------------------------------------------
     public DefaultTableModel Lista_compras() {
@@ -950,7 +953,7 @@ public class BD_huevos {
         }
         return modelo;
     }
-    
+
     public int Agre_Com(int id_producto, int cantidad_comrpa, int total_compra,
             int id_proveedor) {
         int estado;
@@ -971,8 +974,8 @@ public class BD_huevos {
 
         return estado;
     }
-    
-        public DefaultComboBoxModel Combo_Productos() {
+
+    public DefaultComboBoxModel Combo_Productos() {
         DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
         listaModelo.addElement("Seleccione");
         ResultSet res = this.Consulta("select * from Producto");
@@ -986,6 +989,7 @@ public class BD_huevos {
         }
         return listaModelo;
     }
+
     public String idproductos(String idpro) {
         ResultSet result;
         String precio1 = null;
@@ -1009,8 +1013,8 @@ public class BD_huevos {
         return precio1;
 
     }
-    
-     public String idproveedor(String idpro) {
+
+    public String idproveedor(String idpro) {
         ResultSet result;
         String precio1 = null;
         try {
@@ -1033,10 +1037,8 @@ public class BD_huevos {
         return precio1;
 
     }
-     
-         
-     
-         public int BorrarCompra(int id_compra) {
+
+    public int BorrarCompra(int id_compra) {
         int estado;
         try {
             PreparedStatement st = contacto.prepareStatement("delete from Compra where id_compra = ?");
@@ -1053,8 +1055,8 @@ public class BD_huevos {
 
         return estado;
     }
-         
-             public DefaultComboBoxModel combo_proc() {
+
+    public DefaultComboBoxModel combo_proc() {
         DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
         listaModelo.addElement("Seleccione");
         ResultSet res = this.Consulta("select P.nombre_producto\n"
@@ -1186,7 +1188,7 @@ public class BD_huevos {
         return modelo;
     }
     ///INFORME COMPRAS
-    
+
     public DefaultTableModel Lista_ICOMPRAS(String fecha1, String fecha2) {
 
         DefaultTableModel modelo = new DefaultTableModel() {
@@ -1238,7 +1240,58 @@ public class BD_huevos {
         }
         return modelo;
     }
-                
-         
-          
+
+    ///INFORME VENTAS
+    public DefaultTableModel Lista_IVENTAS(String fecha1, String fecha2) {
+
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if (column == 8) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        };
+        ResultSet result;
+        try {
+
+            PreparedStatement st = contacto.prepareStatement("select V.id_venta,\n"
+                    + "P.nombre_producto,\n"
+                    + "V.cantidad_venta as 'Cantidad por unidad',\n"
+                    + "(V.cantidad_venta/30) as 'Cantidad Cubetas',\n"
+                    + "V.total_venta,\n"
+                    + "V.fecha_venta,\n"
+                    + "CONCAT(C.primernombre_cliente,' ',C.primerapellido_cliente) as 'Proveedor'\n"
+                    + "from Venta V , Producto P, Cliente C\n"
+                    + "where V.fecha_venta Between ? and ? AND\n"
+                    + "P.id_producto=V.id_producto AND\n"
+                    + "C.id_cliente=V.id_cliente");
+            st.setString(1, fecha1);
+            st.setString(2, fecha2);
+            result = st.executeQuery();
+            ResultSetMetaData rmsd = result.getMetaData();
+            int canCol = rmsd.getColumnCount();
+            canCol += 1;
+            for (int i = 1; i < canCol; i++) {
+                String title[] = {"", "N°", "Producto", "Unidad", "Cubeta", "Venta  Total", "Fecha Venta", "Cliente"};
+                modelo.addColumn(title[i]);
+            }
+            canCol = canCol - 1;
+            while (result.next()) {
+                Object[] fila = new Object[canCol];
+                for (int i = 0; i < canCol; i++) {
+                    fila[i] = result.getObject(i + 1);
+                }
+//                modelo.addRow(new Object[]{fila[0],new JLabel(this.view_img(3)),fila[2],fila[3]});
+                modelo.addRow(fila);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return modelo;
+    }
+
 }

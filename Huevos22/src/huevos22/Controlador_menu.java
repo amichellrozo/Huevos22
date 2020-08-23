@@ -35,6 +35,7 @@ public class Controlador_menu implements ActionListener {
         this.vs.JBinventario.addActionListener(this);
         vs.JBminimizar.addActionListener(this);
         vs.JBcerrar.addActionListener(this);
+        vs.volver.addActionListener(this);
     }
 
     static Connection contacto1 = null;
@@ -82,6 +83,20 @@ public class Controlador_menu implements ActionListener {
             Vista_informe_compras v = new Vista_informe_compras();
             BD_huevos bd = new BD_huevos();
             Controlador_informe_comprass c1 = new Controlador_informe_comprass(v, bd);
+            vs.setVisible(false);
+        }
+        
+             if (ae.getSource() == vs.JBinformev) {
+            Vista_informe_ventas v = new Vista_informe_ventas();
+            BD_huevos bd = new BD_huevos();
+            Controlador_informe_ventas c1 = new Controlador_informe_ventas(v, bd);
+            vs.setVisible(false);
+        }
+                          if (ae.getSource() == vs.volver) {
+         Vista_login v1 = new Vista_login();
+        BD_huevos m =new  BD_huevos ();
+         Controlador_Login n = new  Controlador_Login (v1,m);
+
             vs.setVisible(false);
         }
         

@@ -110,7 +110,7 @@ public class Controlador_compras implements ActionListener {
             vis1.Cfecha.setVisible(false);
             vis1.Cnproducto.setVisible(false);
             vis1.BuscarP.setVisible(false);
-            limpiarcampos();
+            
             vis1.Cnproducto.setModel(mom.combo_proc());
         vis1.Cproveedor.setModel(mom.combo_prove());
         }
@@ -192,6 +192,7 @@ public class Controlador_compras implements ActionListener {
             vis1.Tcantidad.setVisible(false);
             vis1.Tprecio.setVisible(false);
             vis1.Cproveedor.setVisible(false);
+              vis1.Cprobe.setVisible(false);
             vis1.Cproductos.setVisible(false);
             vis1.JS1.setVisible(false);
             vis1.JS2.setVisible(false);

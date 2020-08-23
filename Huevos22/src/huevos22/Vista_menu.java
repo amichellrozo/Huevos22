@@ -24,9 +24,9 @@ public class Vista_menu extends javax.swing.JFrame {
     JLabel JLClientes, JLproveedores, JLcompras, JLventas,
             JLinventario, JLinformev, JLinformec, JLcerrarsesion, JLmenu, JLfondoprincipal;
     ImageIcon Icliente, Iproveedores, Icompras, Iventas,
-            Iinventario, Iinformev, Iinformec, Icerrar, Iminimizar, Icerrarsesion, IMprincipal;
+            Iinventario, Iinformev, Iinformec, Icerrar, Iminimizar, Icerrarsesion, IMprincipal,VolverI;
     JButton JBclientes, JBproveedores, JBcompras, JBventas,
-            JBinventario, JBinformev, JBinformec, JBcerrar, JBminimizar, JBcerrarsesion;
+            JBinventario, JBinformev, JBinformec, JBcerrar, JBminimizar, JBcerrarsesion,volver;
     Font fuentetitulo = new Font("Microsoft JhengHei Light", Font.BOLD, 50);
     Font fuentenormal = new Font("Microsoft JhengHei Light", Font.BOLD, 20);
     Font fuentebotones = new Font("Microsoft JhengHei Light", Font.CENTER_BASELINE, 25);
@@ -165,6 +165,15 @@ public class Vista_menu extends javax.swing.JFrame {
         ImageIcon k = new ImageIcon(Icerrar.getImage().getScaledInstance(35, 35, java.awt.Image.SCALE_DEFAULT));
         JBcerrar.setIcon(k);
         JPmenu.setLayout(null);
+        
+                volver = new JButton(VolverI);
+        volver.setContentAreaFilled(false);
+        volver.setBorderPainted(false);
+        volver.setToolTipText("ESTA OPCION NOS REGRESA AL MENÚ");
+        VolverI = new ImageIcon("volver.png");
+        ImageIcon de = new ImageIcon(VolverI.getImage().getScaledInstance(35, 35, java.awt.Image.SCALE_DEFAULT));
+        volver.setIcon(de);
+        volver.setBounds(1100, 670, 35, 35);
 
         JLmenu = new JLabel("MENÚ");
         JLmenu.setForeground(Azul);
@@ -215,6 +224,7 @@ public class Vista_menu extends javax.swing.JFrame {
         JPmenu.add(JBinformev);
         JPmenu.add(JBinformec);
         JPmenu.add(JLmenu);
+               JPmenu.add(volver);
 
         JPmenu.add(JBminimizar);
         JPmenu.add(JBcerrar);

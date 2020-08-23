@@ -29,7 +29,7 @@ public class Vista_login extends javax.swing.JFrame {
     JLabel JLigallina, JLcerrar, JLminimizar, JLisusu, JLicontra;
     JTextField JTusuario;
     JPasswordField JPcoontraseña;
-    JButton JBingresar, JBcerrar, JBminimizar, JBregistrate, JBrecuperarcontra;
+    JButton JBingresar, JBcerrar, JBminimizar, JBregistrate;
     JSeparator JSusu, JScontra;
     ImageIcon Igallina, Iusuario, Icontraseña, Ifondo, Icerrar, Iminimizar;
     Font fuentetitulo = new Font("Microsoft JhengHei Light", Font.BOLD, 50);
@@ -118,14 +118,7 @@ public class Vista_login extends javax.swing.JFrame {
         JBregistrate.setContentAreaFilled(false);
         JBregistrate.setBorderPainted(false);
 
-        JBrecuperarcontra = new JButton("¿Olvido su contraseña?");
-        JBrecuperarcontra.setForeground(Azul);
-        JBrecuperarcontra.setFont(fuentebotones);
-        JBrecuperarcontra.setBorder(new LineBorder(Azul));
-        JBrecuperarcontra.setBackground(new Color(255, 255, 255));
-        JBrecuperarcontra.setOpaque(false);
-        JBrecuperarcontra.setContentAreaFilled(false);
-        JBrecuperarcontra.setBorderPainted(false);
+
 
         JBminimizar = new JButton(Iminimizar);
         JBminimizar.setContentAreaFilled(false);
@@ -163,9 +156,8 @@ public class Vista_login extends javax.swing.JFrame {
 
         //BOTONES
         JBingresar.setBounds(280, 550, 200, 40);
-        JBregistrate.setBounds(300, 640, 150, 40);
-        JBrecuperarcontra.setBounds(250, 600, 250, 40);
-        JBminimizar.setBounds(640, 10, 35, 35);
+        JBregistrate.setBounds(310, 620, 150, 40);
+             JBminimizar.setBounds(640, 10, 35, 35);
         JBcerrar.setBounds(690, 10, 35, 35);
 
         //null paneles
@@ -190,7 +182,7 @@ public class Vista_login extends javax.swing.JFrame {
         JPformulario.add(JBminimizar);
         JPformulario.add(JBcerrar);
         JPformulario.add(JBregistrate);
-        JPformulario.add(JBrecuperarcontra);
+       
 
         this.add(JPgallina);
         this.add(JPformulario);

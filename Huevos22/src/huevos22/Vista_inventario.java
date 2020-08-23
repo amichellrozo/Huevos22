@@ -82,7 +82,7 @@ public class Vista_inventario extends JFrame {
         CerrarB.setBounds(400, 10, 35, 35);
         MinimizarB.setBounds(365, 10, 35, 35);
 
-        volver = new JButton(Minimizar);
+        volver = new JButton(VolverI);
         volver.setContentAreaFilled(false);
         volver.setBorderPainted(false);
         volver.setToolTipText("ESTA OPCION NOS REGRESA AL MENÚ");

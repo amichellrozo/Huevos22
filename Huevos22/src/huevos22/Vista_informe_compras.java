@@ -30,6 +30,7 @@ public class Vista_informe_compras extends JFrame {
     JLabel Titulo, Titulo1, Logo, fecha1, fecha2, egresos, pesos, total;
     JTextField TPNombre;
     Font fuente1 = new Font("Microsoft JhengHei Light", Font.PLAIN, 50);
+         Font fuentev = new Font("Microsoft JhengHei Light", Font.PLAIN, 40);
     Font fuente2 = new Font("Microsoft JhengHei Light", Font.PLAIN, 18);
     Font fuente3 = new Font("Microsoft JhengHei Light", Font.PLAIN, 15);
     Color color1 = new Color(110, 197, 184);
@@ -73,19 +74,19 @@ public class Vista_informe_compras extends JFrame {
         Panel1.add(Titulo1);
 
         egresos = new JLabel("TOTAL :");
-        egresos.setFont(fuente1);
+        egresos.setFont(fuentev);
         egresos.setForeground(color2);
-        egresos.setBounds(140, 300, 600, 45);
+        egresos.setBounds(70, 300, 600, 45);
         Panel1.add(egresos);
 
         pesos = new JLabel("$");
-        pesos.setFont(fuente1);
+        pesos.setFont(fuentev);
         pesos.setForeground(color2);
         pesos.setBounds(80, 380, 40, 45);
         Panel1.add(pesos);
         
         total = new JLabel();
-        total.setFont(fuente1);
+        total.setFont(fuentev);
         total.setForeground(color2);
         total.setBounds(120, 380, 250, 45);
         Panel1.add(total);
@@ -177,7 +178,7 @@ public class Vista_informe_compras extends JFrame {
         panel.setBounds(60, 170, 660, 480);
 
         Mostrar = new JButton("OBTENER EGRESOS");
-        Mostrar.setToolTipText("ESTA OPCIÓN LISTA LOS PROVEEDORES");
+        Mostrar.setToolTipText("ESTA OPCIÓN LISTA LOS EGRESOS CON LOS FILTROS DE FECHA");
         Mostrar.setForeground(color2);
         Mostrar.setBackground(Color.white);
         Mostrar.setFont(fuente2);
