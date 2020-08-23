@@ -589,8 +589,61 @@ public class BD_huevos {
         }
         return modelo;
     }
-    
-        public DefaultTableModel Lista_Inv() {
+
+    //VENTAS
+    public DefaultTableModel 
+        Lista_ven() {
+
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if (column == 7) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        };
+        ResultSet result;
+        try {
+
+            PreparedStatement st = contacto.prepareStatement("select V.id_venta,\n"
+                    + "P.nombre_producto,\n"
+                    + "V.cantidad_venta as 'Cantidad por unidad',\n"
+                    + "(V.cantidad_venta/30) as 'Cantidad Cubetas',\n"
+                    + "V.total_venta,\n"
+                    + "V.fecha_venta,\n"
+                    + "CONCAT(C.primernombre_cliente,' ',C.primerapellido_cliente) as 'Proveedor'\n"
+                    + "from Venta V , Producto P, Cliente C\n"
+                    + "where P.id_producto=V.id_producto AND\n"
+                    + "C.id_cliente=V.id_cliente");
+
+            result = st.executeQuery();
+            ResultSetMetaData rmsd = result.getMetaData();
+            int canCol = rmsd.getColumnCount();
+            canCol += 1;
+            for (int i = 1; i < canCol; i++) {
+                String title[] = {"", "N°", "Producto", "Unidad", "Cubeta", "Venta Total", "Fecha Venta", "Cliente"};
+                modelo.addColumn(title[i]);
+            }
+            canCol = canCol - 1;
+            while (result.next()) {
+                Object[] fila = new Object[canCol];
+                for (int i = 0; i < canCol; i++) {
+                    fila[i] = result.getObject(i + 1);
+                }
+//                modelo.addRow(new Object[]{fila[0],new JLabel(this.view_img(3)),fila[2],fila[3]});
+                modelo.addRow(fila);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return modelo;
+    }
+
+    //INVENTARIO
+    public DefaultTableModel Lista_Inv() {
 
         DefaultTableModel modelo = new DefaultTableModel() {
             @Override
@@ -630,8 +683,58 @@ public class BD_huevos {
         }
         return modelo;
     }
-    
 
+    //COMPRAS
+    public DefaultTableModel Lista_compras() {
+
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if (column == 5) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        };
+        ResultSet result;
+        try {
+
+            PreparedStatement st = contacto.prepareStatement("select C.id_compra,\n"
+                    + "P.nombre_producto,\n"
+                    + "C.cantidad_comrpa 'Cantidad por unidad',\n"
+                    + "(C.cantidad_comrpa/30) as 'Cantidad Cubetas',\n"
+                    + "C.total_compra,\n"
+                    + "C.fecha_compra,\n"
+                    + "CONCAT(PV.primernombre_proveedor,' ',PV.primerapellido_proveedor) as 'Proveedor'\n"
+                    + "from  Producto P, Compra C, Proveedor PV\n"
+                    + "where P.id_producto=C.id_producto AND\n"
+                    + "C.id_proveedor=PV.id_proveedor\n"
+                    + "");
+
+            result = st.executeQuery();
+            ResultSetMetaData rmsd = result.getMetaData();
+            int canCol = rmsd.getColumnCount();
+            canCol += 1;
+            for (int i = 1; i < canCol; i++) {
+                String title[] = {"", "N°", "Producto", "Unidad", "Cubeta", "Compra Total", "Fecha Compra", "Proveedor"};
+                modelo.addColumn(title[i]);
+            }
+            canCol = canCol - 1;
+            while (result.next()) {
+                Object[] fila = new Object[canCol];
+                for (int i = 0; i < canCol; i++) {
+                    fila[i] = result.getObject(i + 1);
+                }
+//                modelo.addRow(new Object[]{fila[0],new JLabel(this.view_img(3)),fila[2],fila[3]});
+                modelo.addRow(fila);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return modelo;
+    }
 }
 //=======
 //package huevosaj;

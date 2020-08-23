@@ -49,10 +49,13 @@ public class Controlador_ventas implements ActionListener{
             vis1.tablav.setModel(model);
             TableColumnModel columnModel = vis1.tablav.getColumnModel();
 
-            columnModel.getColumn(0).setPreferredWidth(100);
-            columnModel.getColumn(1).setPreferredWidth(100);
-            columnModel.getColumn(2).setPreferredWidth(100);
-            columnModel.getColumn(3).setPreferredWidth(100);
+            columnModel.getColumn(0).setPreferredWidth(30);
+            columnModel.getColumn(1).setPreferredWidth(80);
+            columnModel.getColumn(2).setPreferredWidth(70);
+            columnModel.getColumn(3).setPreferredWidth(70);
+            columnModel.getColumn(4).setPreferredWidth(80);
+            columnModel.getColumn(5).setPreferredWidth(80);
+            columnModel.getColumn(6).setPreferredWidth(100);
             mom.desconectar();
         }
     }
