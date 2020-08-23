@@ -106,7 +106,7 @@ public class Controlador_cliente implements ActionListener, MouseListener, KeyLi
         if (ae.getSource() == vis1.CrearP) {
             contacto1 = huevos22.BD_huevos.getConexion();
             int co = this.mom.Val_clie_Correo(this.vis1.TCorreo.getText());
-            if (vis1.TPNombre.getText().isEmpty() || vis1.TSNombre.getText().isEmpty() || vis1.TPApellido.getText().isEmpty() || vis1.TSApellido.getText().isEmpty() || vis1.TCorreo.getText().isEmpty() || vis1.TTelefono.getText().isEmpty() || vis1.TDireccion.getText().isEmpty()) { // si estos coampos no estan llenos
+            if (vis1.TPNombre.getText().isEmpty() || vis1.TSNombre.getText().isEmpty() || vis1.TPApellido.getText().isEmpty() || vis1.TSApellido.getText().isEmpty() || vis1.TDireccion.getText().isEmpty() || vis1.TTelefono.getText().isEmpty() || vis1.TCorreo.getText().isEmpty()) { // si estos coampos no estan llenos
                 JOptionPane.showMessageDialog(null, "campos vacios");
             } else {
                 if (co == 1) {
@@ -115,7 +115,7 @@ public class Controlador_cliente implements ActionListener, MouseListener, KeyLi
                     if (!vis1.TCorreo.getText().contains("@") || !vis1.TCorreo.getText().contains(".")) {
                         JOptionPane.showMessageDialog(null, "Correo Invalido");
                     } else {
-                        int v = this.mom.Agre_clientes(vis1.TPNombre.getText(), vis1.TSNombre.getText(), vis1.TPApellido.getText(), vis1.TSApellido.getText(), vis1.TCorreo.getText(), vis1.TTelefono.getText(), vis1.TDireccion.getText());
+                        int v = this.mom.Agre_clientes(vis1.TPNombre.getText(), vis1.TSNombre.getText(), vis1.TPApellido.getText(), vis1.TSApellido.getText(), vis1.TDireccion.getText(), vis1.TTelefono.getText(), vis1.TCorreo.getText());
                         limpiarcliente();
                         if (v == 0) {
                             JOptionPane.showMessageDialog(null, "No Guardado", "Informacion", 0);
