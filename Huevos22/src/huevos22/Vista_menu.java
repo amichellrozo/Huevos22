@@ -43,7 +43,7 @@ public class Vista_menu extends javax.swing.JFrame {
 
         JLfondoprincipal = new JLabel();
         JLfondoprincipal.setBackground(Azul);
-        IMprincipal = new ImageIcon("hue.jpg");
+        IMprincipal = new ImageIcon("fondo.png");
         ImageIcon iconoEscala = new ImageIcon(IMprincipal.getImage().getScaledInstance(1250, 720, java.awt.Image.SCALE_DEFAULT));
         JLfondoprincipal.setIcon(iconoEscala);
 
