@@ -23,13 +23,34 @@ public class Controlador_compras implements ActionListener{
         mom = m;
         vis1 = v1;
 
+        vis1.BCrear.addActionListener(this);
         vis1.CerrarB.addActionListener(this);
         vis1.MinimizarB.addActionListener(this);
         vis1.volver.addActionListener(this);
         vis1.Mostrar.addActionListener(this);
+        vis1.CrearP.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == vis1.BCrear){
+            vis1.Lpeso.setVisible(true);
+            vis1.Lunid.setVisible(true);
+            vis1.Lprecio.setVisible(true);
+            vis1.Lcliente.setVisible(true);
+            vis1.LProduto.setVisible(true);
+            vis1.LCantidad.setVisible(true);
+            vis1.Tcantidad.setVisible(true);
+            vis1.Tprecio.setVisible(true);
+            vis1.Cprobe.setVisible(true);
+            vis1.Cproductos.setVisible(true);
+            vis1.JS1.setVisible(true);
+            vis1.JS2.setVisible(true);
+            vis1.CrearP.setVisible(true);
+            vis1.Logo.setVisible(false);
+            
+            
+        }
+        
           if (e.getSource() == vis1.CerrarB) {
             System.exit(0);
         }

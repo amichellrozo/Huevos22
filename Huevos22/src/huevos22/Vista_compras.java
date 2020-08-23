@@ -117,7 +117,7 @@ public class Vista_compras extends JFrame {
         ListaB.setBounds(590, 25, 80, 80);
 
         CrearP = new JButton("Agregar Compra");
-        CrearP.setBounds(140, 590, 170, 50);
+        CrearP.setBounds(130, 590, 190, 50);
         CrearP.setBackground(color1);
         CrearP.setForeground(negro);
         CrearP.setFont(fuente2);
