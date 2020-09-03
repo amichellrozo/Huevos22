@@ -28,16 +28,17 @@ import javax.swing.border.LineBorder;
 public class Vista_gastos extends JFrame {
 
     JPanel Panel1, Panel2;
-    JLabel Titulo, LProduto, LCantidad, Lprecio, Lcliente, Lunid, Lpeso, Logo, Lidc;
+    JLabel Titulo, LProduto, LCantidad, Lprecio, Lcliente, Lunid, Lpeso, Logo, Lidc, ingresos, pesos, total;
     JTextField Tcantidad, Tprecio, TId_proveeedor, TId_proveeedor1;
     JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ListaB, Mostrar, ActualizarC, ActualizarP, BuscarP, ActualizarB, Bginforme, Binforme;
     ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ListaI, imagen, ActualizarI, iginforme, iinforme;
-    JSeparator JS1, JS2, JS3, JS4,JS5;
+    JSeparator JS1, JS2, JS3, JS4, JS5;
     JTable tablac;
     JScrollPane panel;
     Border thickBorder = new LineBorder(Color.white, 2);
     JComboBox Opciones, Opciones1, Cproductos, Cfecha, Cproveedor, Cnproducto, Cprobe, cfecha, cfecha1;
     String Titulos[] = {"Nombre", "Apellido", "Edad"};
+    Font fuentev = new Font("Microsoft JhengHei Light", Font.PLAIN, 40);
     Font fuente1 = new Font("Microsoft JhengHei Light", Font.PLAIN, 50);
     Font fuente2 = new Font("Microsoft JhengHei Light", Font.PLAIN, 18);
     Font fuente3 = new Font("Microsoft JhengHei Light", Font.PLAIN, 15);
@@ -64,6 +65,24 @@ public class Vista_gastos extends JFrame {
         Panel2.setLayout(null);
         Panel2.setBackground(color1);
         Panel2.setBounds(0, 0, 800, 720);
+
+        ingresos = new JLabel("TOTAL VENTA :");
+        ingresos.setFont(fuentev);
+        ingresos.setForeground(color2);
+        ingresos.setBounds(70, 550, 600, 45);
+        Panel1.add(ingresos);
+
+        pesos = new JLabel("$");
+        pesos.setFont(fuentev);
+        pesos.setForeground(color2);
+        pesos.setBounds(80, 600, 40, 45);
+        Panel1.add(pesos);
+
+        total = new JLabel();
+        total.setFont(fuentev);
+        total.setForeground(color2);
+        total.setBounds(120, 600, 250, 45);
+        Panel1.add(total);
 
         imagen = new ImageIcon("Logo1.png");
         Logo = new JLabel(imagen);
@@ -165,8 +184,6 @@ public class Vista_gastos extends JFrame {
         CrearP.setFont(fuente2);
         Panel1.add(CrearP);
 
-       
-
         ActualizarP = new JButton("Actualizar Gasto");
         ActualizarP.setBounds(130, 490, 190, 50);
         ActualizarP.setBackground(color1);
@@ -192,8 +209,6 @@ public class Vista_gastos extends JFrame {
         LCantidad.setBounds(80, 260, 170, 50);
         LCantidad.setFont(fuente2);
         LCantidad.setForeground(color2);
-
-        
 
         Tcantidad = new JTextField("");
         Tcantidad.setBounds(80, 320, 190, 27);
@@ -261,7 +276,7 @@ public class Vista_gastos extends JFrame {
         tablac.setForeground(Color.white);
         panel.setBounds(60, 170, 660, 500);
 
-        String opcPP[] = {"Seleccionar Opción", "Producto", "Proveedor", "Fecha venta"};
+        String opcPP[] = {"Seleccionar Opción", "Tipo Gasto"};
         Opciones = new JComboBox(opcPP);
         Opciones.setBackground(blanco);
         Opciones.setOpaque(false);
@@ -286,7 +301,7 @@ public class Vista_gastos extends JFrame {
         Cnproducto.setFont(fuente2);
         Cnproducto.setBorder(new LineBorder(color1));
         Cnproducto.setForeground(color1);
-        Cnproducto.setBounds(100, 190, 200, 50);
+        Cnproducto.setBounds(120, 190, 200, 50);
         Panel1.add(Cnproducto);
 
         Cproveedor = new JComboBox();
@@ -312,28 +327,28 @@ public class Vista_gastos extends JFrame {
         cfecha.setOpaque(false);
         cfecha.setFont(fuente2);
         cfecha.setBorder(new LineBorder(color1));
-        cfecha.setForeground(color2);
-        cfecha.setBounds(100, 120, 200, 50);
-        Panel2.add(cfecha);
+        cfecha.setForeground(color1);
+        cfecha.setBounds(120, 120, 200, 50);
+        Panel1.add(cfecha);
 
         cfecha1 = new JComboBox();
         cfecha1.setBackground(Color.white);
         cfecha1.setOpaque(false);
         cfecha1.setFont(fuente2);
         cfecha1.setBorder(new LineBorder(color1));
-        cfecha1.setForeground(color2);
-        cfecha1.setBounds(360, 120, 200, 50);
-        Panel2.add(cfecha1);
-        
-         Bginforme = new JButton(" GASTOS");
-        Bginforme.setBounds(600, 120, 180, 45);
+        cfecha1.setForeground(color1);
+        cfecha1.setBounds(120, 190, 200, 50);
+        Panel1.add(cfecha1);
+
+        Bginforme = new JButton(" GASTOS");
+        Bginforme.setBounds(140, 660, 180, 50);
         Bginforme.setBackground(color1);
         Bginforme.setForeground(negro);
         Bginforme.setFont(fuente2);
         Panel1.add(Bginforme);
 
-        BuscarP = new JButton("Buscar compra");
-        BuscarP.setBounds(140, 110, 180, 50);
+        BuscarP = new JButton("Buscar Gasto");
+        BuscarP.setBounds(140, 660, 180, 50);
         BuscarP.setBackground(color1);
         BuscarP.setForeground(color2);
         BuscarP.setFont(fuente2);
@@ -368,9 +383,12 @@ public class Vista_gastos extends JFrame {
         BuscarP.setVisible(false);
         Opciones1.setVisible(false);
         ActualizarP.setVisible(false);
-//        Bginforme.setVisible(false);
-       // cfecha.setVisible(false);
-      //  cfecha1.setVisible(false);
+        Bginforme.setVisible(false);
+        cfecha.setVisible(false);
+        cfecha1.setVisible(false);
+        ingresos.setVisible(false);
+        pesos.setVisible(false);
+        total.setVisible(false);
 
         Panel2.add(ActualizarB);
         Panel1.add(Titulo);
@@ -383,7 +401,7 @@ public class Vista_gastos extends JFrame {
         Panel1.add(MinimizarB);
         Panel2.add(BCrear);
         Panel2.add(BEliminar);
-        Panel2.add(Bginforme);
+       
         Panel2.add(Binforme);
 
         this.add(Panel2);

@@ -1354,7 +1354,7 @@ public class BD_huevos {
             int canCol = rmsd.getColumnCount();
             canCol += 1;
             for (int i = 1; i < canCol; i++) {
-                String title[] = {"", "ID Gasto", "Nombre Gasto", "Descripción Gasto", "Valor","Fecha"};
+                String title[] = {"", "ID Gasto", "Nombre Gasto", "Descripción Gasto", "Valor", "Fecha"};
                 modelo.addColumn(title[i]);
             }
             canCol = canCol - 1;
@@ -1371,7 +1371,7 @@ public class BD_huevos {
         }
         return modelo;
     }
-    
+
     public String[] Modifi_Gasto(int dato, int combo) {
         String resultado[] = new String[11], campoDB = "";
         ResultSet result;
@@ -1394,8 +1394,8 @@ public class BD_huevos {
         }
         return resultado;
     }
-    
-        public int Actualizargasto(int Id_gasto, String Nombre_gasto, String Descripcion_gasto, int Costo_gasto) {
+
+    public int Actualizargasto(int Id_gasto, String Nombre_gasto, String Descripcion_gasto, int Costo_gasto) {
         int estado;
 
         try {
@@ -1414,4 +1414,148 @@ public class BD_huevos {
 
         return estado;
     }
+
+    public int Borrargastos(int id_gasto) {
+        int estado;
+        try {
+            PreparedStatement st = contacto.prepareStatement("delete from Gasto where id_gasto = ?");
+
+            st.setInt(1, id_gasto);
+            st.executeUpdate();
+
+            st.execute();
+            estado = 1;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            estado = 0;
+        }
+
+        return estado;
+    }
+
+    public DefaultComboBoxModel combo_gASTOS() {
+        DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+        listaModelo.addElement("Seleccione");
+        ResultSet res = this.Consulta("select G.Nombre_gasto\n"
+                + "from Gasto G\n"
+                + "group by G.Nombre_gasto");
+        try {
+            while (res.next()) {
+                listaModelo.addElement(res.getString("Nombre_gasto"));
+            }
+            res.close();
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+        }
+        return listaModelo;
+    }
+
+    public DefaultTableModel Buscar_gasto(String Dato, int opcion) {
+        System.out.print(Dato);
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if (column == 6) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        };
+        String campoDB = "";
+        ResultSet result;
+        try {
+            if (opcion == 1) {
+
+                campoDB = "select G.Id_gasto,G.Nombre_gasto,G.Descripcion_gasto,G.Costo_gasto,G.Fecha_gasto\n"
+                        + "from Gasto G\n"
+                        + "where G.Nombre_gasto=" + "'" + Dato + "'";
+            }
+
+            PreparedStatement st = contacto.prepareStatement(campoDB);
+
+            result = st.executeQuery();
+            ResultSetMetaData rmsd = result.getMetaData();
+            int canCol = rmsd.getColumnCount();
+            canCol += 1;
+            for (int i = 1; i < canCol; i++) {
+                String title[] = {"", "ID Gasto", "Nombre Gasto", "Descripción Gasto", "Valor", "Fecha"};
+                modelo.addColumn(title[i]);
+            }
+            canCol = canCol - 1;
+            while (result.next()) {
+                Object[] fila = new Object[canCol];
+                for (int i = 0; i < canCol; i++) {
+                    fila[i] = result.getObject(i + 1);
+                }
+//              
+                modelo.addRow(fila);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return modelo;
+    }
+        public DefaultComboBoxModel combo_FEHCA() {
+        DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+        listaModelo.addElement("Seleccione");
+        ResultSet res = this.Consulta("select G.Fecha_gasto\n" +
+"                        from Gasto G\n" +
+"                        group by G.Fecha_gasto");
+        try {
+            while (res.next()) {
+                listaModelo.addElement(res.getString("Fecha_gasto"));
+            }
+            res.close();
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+        }
+        return listaModelo;
+    }
+    
+        public DefaultTableModel Lista_IGASTOS(String fecha1, String fecha2) {
+
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if (column == 5) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        };
+        ResultSet result;
+        try {
+
+            PreparedStatement st = contacto.prepareStatement("select G.Id_gasto,G.Nombre_gasto,G.Descripcion_gasto,G.Costo_gasto,G.Fecha_gasto\n" +
+"                        from Gasto G\n" +
+"where G.Fecha_gasto Between ? and ? ");
+            st.setString(1, fecha1);
+            st.setString(2, fecha2);
+            result = st.executeQuery();
+            ResultSetMetaData rmsd = result.getMetaData();
+            int canCol = rmsd.getColumnCount();
+            canCol += 1;
+            for (int i = 1; i < canCol; i++) {
+                 String title[] = {"", "ID Gasto", "Nombre Gasto", "Descripción Gasto", "Valor", "Fecha"};
+                modelo.addColumn(title[i]);
+            }
+            canCol = canCol - 1;
+            while (result.next()) {
+                Object[] fila = new Object[canCol];
+                for (int i = 0; i < canCol; i++) {
+                    fila[i] = result.getObject(i + 1);
+                }
+//                modelo.addRow(new Object[]{fila[0],new JLabel(this.view_img(3)),fila[2],fila[3]});
+                modelo.addRow(fila);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return modelo;
+    }
+
 }
