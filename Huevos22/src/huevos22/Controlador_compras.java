@@ -166,7 +166,7 @@ public class Controlador_compras implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Compra Registrada", "Información", 1);
                     contacto1 = huevos22.BD_huevos.getConexion();
                     DefaultTableModel model = new DefaultTableModel();
-                    model = mom.Lista_gastos();
+                    model = mom.Lista_compras();
                     vis1.tablac.setModel(model);
                     TableColumnModel columnModel = vis1.tablac.getColumnModel();
 
@@ -174,6 +174,9 @@ public class Controlador_compras implements ActionListener {
                     columnModel.getColumn(1).setPreferredWidth(50);
                     columnModel.getColumn(2).setPreferredWidth(50);
                     columnModel.getColumn(3).setPreferredWidth(50);
+                    columnModel.getColumn(4).setPreferredWidth(100);
+                    columnModel.getColumn(5).setPreferredWidth(100);
+                    columnModel.getColumn(6).setPreferredWidth(120);
                     mom.desconectar();
                 }
 

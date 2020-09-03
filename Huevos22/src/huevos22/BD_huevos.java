@@ -1354,7 +1354,7 @@ public class BD_huevos {
             int canCol = rmsd.getColumnCount();
             canCol += 1;
             for (int i = 1; i < canCol; i++) {
-                String title[] = {"", "ID Gasto", "Nombre Gasto", "Descripcioón Gasto", "Valor"};
+                String title[] = {"", "ID Gasto", "Nombre Gasto", "Descripción Gasto", "Valor"};
                 modelo.addColumn(title[i]);
             }
             canCol = canCol - 1;
@@ -1370,5 +1370,48 @@ public class BD_huevos {
 
         }
         return modelo;
+    }
+    
+    public String[] Modifi_Gasto(int dato, int combo) {
+        String resultado[] = new String[11], campoDB = "";
+        ResultSet result;
+        try {
+
+            if (Activo == 0) {
+                campoDB = "select * from Gasto where Id_gasto";
+            }
+            PreparedStatement st
+                    = contacto.prepareStatement(campoDB + "=?");
+            st.setInt(1, dato);
+            result = st.executeQuery();
+            while (result.next()) {
+                resultado[0] = result.getString("Nombre_gasto");
+                resultado[1] = result.getString("Descripcion_gasto");
+                resultado[2] = result.getString("Costo_gasto");
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return resultado;
+    }
+    
+        public int Actualizargasto(int Id_gasto, String Nombre_gasto, String Descripcion_gasto, int Costo_gasto) {
+        int estado;
+
+        try {
+            PreparedStatement st = contacto.prepareStatement("update Gasto set Nombre_gasto=?,Descripcion_gasto=?,Costo_gasto=? where Id_gasto=?");
+            st.setString(1, Nombre_gasto);
+            st.setString(2, Descripcion_gasto);
+            st.setInt(3, Costo_gasto);
+            st.setInt(4, Id_gasto);
+            st.execute();
+            estado = 1;
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            estado = 0;
+        }
+
+        return estado;
     }
 }
