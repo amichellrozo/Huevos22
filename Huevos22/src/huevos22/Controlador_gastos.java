@@ -95,7 +95,6 @@ public class Controlador_gastos implements ActionListener {
 
         if (e.getSource() == vis1.ActualizarB) {
             vis1.Lpeso.setVisible(true);
-            vis1.Lunid.setVisible(true);
             vis1.Lprecio.setVisible(true);
             vis1.LProduto.setVisible(true);
             vis1.LCantidad.setVisible(true);
@@ -197,7 +196,7 @@ public class Controlador_gastos implements ActionListener {
                     JOptionPane.showMessageDialog(null, "No Guardado", "Informacion", 0);
                 } else {
                     limpiarcampos();
-                    vis1.Cproductos.setModel(mom.Combo_Productos());
+                    vis1.Cproductos.setModel(mom.combo_gASTOS());
 
                     JOptionPane.showMessageDialog(null, "Gasto Registrado", "Información", 1);
                     contacto1 = huevos22.BD_huevos.getConexion();

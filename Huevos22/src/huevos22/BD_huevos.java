@@ -908,7 +908,7 @@ public class BD_huevos {
         DefaultTableModel modelo = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                if (column == 5) {
+                if (column == 9) {
                     return true;
                 } else {
                     return false;
@@ -925,7 +925,9 @@ public class BD_huevos {
                     + "(C.cantidad_comrpa/30) as 'Cantidad Cubetas',\n"
                     + "C.total_compra,\n"
                     + "C.fecha_compra,\n"
-                    + "CONCAT(PV.primernombre_proveedor,' ',PV.primerapellido_proveedor) as 'Proveedor'\n"
+                    + "CONCAT(PV.primernombre_proveedor,' ',PV.primerapellido_proveedor) as 'Proveedor', \n"
+                    + "C.rotura_compa,\n"
+                    + "C.manchado_compra \n"
                     + "from  Producto P, Compra C, Proveedor PV\n"
                     + "where P.id_producto=C.id_producto AND\n"
                     + "C.id_proveedor=PV.id_proveedor\n"
@@ -936,7 +938,7 @@ public class BD_huevos {
             int canCol = rmsd.getColumnCount();
             canCol += 1;
             for (int i = 1; i < canCol; i++) {
-                String title[] = {"", "N°", "Producto", "Unidad", "Cubeta", "Compra Total", "Fecha Compra", "Proveedor"};
+                String title[] = {"", "N°", "Producto", "Unidad", "Cubeta", "Compra Total", "Fecha Compra", "Proveedor","Rotura","Manchado"};
                 modelo.addColumn(title[i]);
             }
             canCol = canCol - 1;
@@ -955,15 +957,17 @@ public class BD_huevos {
     }
 
     public int Agre_Com(int id_producto, int cantidad_comrpa, int total_compra,
-            int id_proveedor) {
+            int id_proveedor, int rotura_compra,int manchado_compra) {
         int estado;
         try {
 
-            PreparedStatement st = contacto.prepareStatement("insert Compra (id_producto,cantidad_comrpa,total_compra,id_proveedor) values (?,?,?,?)");
+            PreparedStatement st = contacto.prepareStatement("insert Compra (id_producto,cantidad_comrpa,total_compra,id_proveedor,rotura_compa,manchado_compra) values (?,?,?,?,?,?)");
             st.setInt(1, id_producto);
             st.setInt(2, cantidad_comrpa);
             st.setInt(3, total_compra);
             st.setInt(4, id_proveedor);
+            st.setInt(5, rotura_compra);
+            st.setInt(6, manchado_compra);            
             st.execute();
             estado = 1;
 
@@ -974,8 +978,8 @@ public class BD_huevos {
 
         return estado;
     }
-
-    public DefaultComboBoxModel Combo_Productos() {
+    
+        public DefaultComboBoxModel Combo_Productos() {
         DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
         listaModelo.addElement("Seleccione");
         ResultSet res = this.Consulta("select nombre_producto from Producto");

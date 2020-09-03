@@ -28,11 +28,11 @@ import javax.swing.border.LineBorder;
 public class Vista_compras extends JFrame {
 
     JPanel Panel1, Panel2;
-    JLabel Titulo, LProduto, LCantidad, Lprecio, Lcliente, Lunid, Lpeso, Logo, Lidc;
-    JTextField Tcantidad, Tprecio, TId_proveeedor, TId_proveeedor1;
+    JLabel Titulo, LProduto, LCantidad, Lprecio, Lcliente, Lunid, Lpeso, Logo, Lidc, Lrotura, Lmanchado;
+    JTextField Tcantidad, Tprecio, TId_proveeedor, TId_proveeedor1,Trotura, Tmanchado;
     JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ListaB, Mostrar, ActualizarC, BuscarP;
     ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ListaI, imagen;
-    JSeparator JS1, JS2, JS3, JS4;
+    JSeparator JS1, JS2, JS3, JS4,JS5,JS6;
     JTable tablac;
     JScrollPane panel;
     Border thickBorder = new LineBorder(Color.white, 2);
@@ -139,14 +139,14 @@ public class Vista_compras extends JFrame {
         TId_proveeedor1.setVisible(false);
 
         CrearP = new JButton("Agregar Compra");
-        CrearP.setBounds(130, 590, 190, 50);
+        CrearP.setBounds(130, 660, 190, 50);
         CrearP.setBackground(color1);
         CrearP.setForeground(negro);
         CrearP.setFont(fuente2);
         Panel1.add(CrearP);
 
         LProduto = new JLabel("Producto:");
-        LProduto.setBounds(80, 160, 170, 50);
+        LProduto.setBounds(80, 120, 170, 50);
         LProduto.setFont(fuente2);
         LProduto.setForeground(color2);
 
@@ -156,22 +156,22 @@ public class Vista_compras extends JFrame {
         Cproductos.setFont(fuente2);
         Cproductos.setBorder(new LineBorder(color1));
         Cproductos.setForeground(color1);
-        Cproductos.setBounds(80, 220, 200, 50);
+        Cproductos.setBounds(80, 180, 200, 50);
         Panel1.add(Cproductos);
 
         LCantidad = new JLabel("Cantidad:");
-        LCantidad.setBounds(80, 260, 170, 50);
+        LCantidad.setBounds(80, 220, 170, 50);
         LCantidad.setFont(fuente2);
         LCantidad.setForeground(color2);
 
         Lunid = new JLabel("Uds");
-        Lunid.setBounds(280, 310, 50, 50);
+        Lunid.setBounds(280, 270, 50, 50);
         Lunid.setFont(fuente2);
         Lunid.setForeground(color2);
         Panel1.add(Lunid);
 
         Tcantidad = new JTextField("");
-        Tcantidad.setBounds(80, 320, 190, 27);
+        Tcantidad.setBounds(80, 280, 190, 27);
         Tcantidad.setFont(fuente2);
         Tcantidad.setForeground(color2);
         Tcantidad.setBorder(thickBorder);
@@ -179,23 +179,23 @@ public class Vista_compras extends JFrame {
 
         JS2 = new JSeparator(JSeparator.HORIZONTAL);
         JS2.setForeground(color2);
-        JS2.setBounds(80, 347, 190, 30);
+        JS2.setBounds(80, 307, 190, 30);
         Panel1.add(JS2);
 
         Lprecio = new JLabel("Precio Total:");
-        Lprecio.setBounds(80, 360, 170, 50);
+        Lprecio.setBounds(80, 320, 170, 50);
         Lprecio.setFont(fuente2);
         Lprecio.setForeground(color2);
 
         Tprecio = new JTextField("");
-        Tprecio.setBounds(90, 420, 180, 27);
+        Tprecio.setBounds(90, 380, 180, 27);
         Tprecio.setFont(fuente2);
         Tprecio.setForeground(color2);
         Tprecio.setBorder(thickBorder);
         Panel1.add(Tprecio);
 
         Lpeso = new JLabel("$");
-        Lpeso.setBounds(80, 410, 50, 50);
+        Lpeso.setBounds(80, 370, 50, 50);
         Lpeso.setFont(fuente2);
         Lpeso.setForeground(color2);
         Panel1.add(Lpeso);
@@ -208,13 +208,47 @@ public class Vista_compras extends JFrame {
 
         JS1 = new JSeparator(JSeparator.HORIZONTAL);
         JS1.setForeground(color2);
-        JS1.setBounds(90, 447, 190, 30);
+        JS1.setBounds(90, 407, 190, 30);
         Panel1.add(JS1);
 
         Lcliente = new JLabel("Proveedor:");
-        Lcliente.setBounds(80, 460, 170, 50);
+        Lcliente.setBounds(80, 420, 170, 50);
         Lcliente.setFont(fuente2);
         Lcliente.setForeground(color2);
+
+        Lrotura = new JLabel("Rotura :");
+        Lrotura.setBounds(80, 540, 170, 50);
+        Lrotura.setFont(fuente2);
+        Lrotura.setForeground(color2);
+        
+        Trotura = new JTextField("");
+        Trotura.setBounds(80, 600, 100, 27);
+        Trotura.setFont(fuente2);
+        Trotura.setForeground(color2);
+        Trotura.setBorder(thickBorder);
+        Panel1.add(Trotura);
+        
+        JS5 = new JSeparator(JSeparator.HORIZONTAL);
+        JS5.setForeground(color2);
+        JS5.setBounds(80, 627, 100, 30);
+        Panel1.add(JS5);
+
+        Lmanchado = new JLabel("Manchado :");
+        Lmanchado.setBounds(220, 540, 170, 50);
+        Lmanchado.setFont(fuente2);
+        Lmanchado.setForeground(color2);
+        
+        Tmanchado = new JTextField("");
+        Tmanchado.setBounds(220, 600, 100, 27);
+        Tmanchado.setFont(fuente2);
+        Tmanchado.setForeground(color2);
+        Tmanchado.setBorder(thickBorder);
+        Panel1.add(Tmanchado);
+        
+        JS6 = new JSeparator(JSeparator.HORIZONTAL);
+        JS6.setForeground(color2);
+        JS6.setBounds(220, 627, 100, 30);
+        Panel1.add(JS6);
 
         Cprobe = new JComboBox();
         Cprobe.setBackground(blanco);
@@ -222,7 +256,7 @@ public class Vista_compras extends JFrame {
         Cprobe.setFont(fuente2);
         Cprobe.setBorder(new LineBorder(color1));
         Cprobe.setForeground(color2);
-        Cprobe.setBounds(80, 520, 200, 50);
+        Cprobe.setBounds(80, 480, 200, 50);
         Panel1.add(Cprobe);
 
         Mostrar = new JButton("MOSTRAR TODO");
@@ -324,12 +358,20 @@ public class Vista_compras extends JFrame {
         Cproveedor.setVisible(false);
         Cnproducto.setVisible(false);
         BuscarP.setVisible(false);
+        JS5.setVisible(false);
+        JS6.setVisible(false);
+        Lrotura.setVisible(false);
+        Trotura.setVisible(false);
+        Lmanchado.setVisible(false);
+        Tmanchado.setVisible(false);
 
         Panel1.add(Titulo);
         Panel1.add(LProduto);
         Panel1.add(LCantidad);
         Panel1.add(Lprecio);
         Panel1.add(Lcliente);
+        Panel1.add(Lrotura);
+        Panel1.add(Lmanchado);
         Panel2.add(panel);
         Panel2.add(ListaB);
         Panel1.add(CerrarB);

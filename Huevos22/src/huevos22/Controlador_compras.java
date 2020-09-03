@@ -48,14 +48,14 @@ public class Controlador_compras implements ActionListener {
     public void limpiarcampos() {
         vis1.Tprecio.setText("");
         vis1.Tcantidad.setText("");
+        vis1.Trotura.setText("");
+        vis1.Tmanchado.setText("");
         vis1.Cprobe.removeAllItems();
         vis1.Cproductos.removeAllItems();
         vis1.Cnproducto.removeAllItems();
         vis1.Cproveedor.removeAllItems();
         vis1.Cfecha.removeAllItems();
     }
-
-   
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -80,9 +80,11 @@ public class Controlador_compras implements ActionListener {
                     columnModel.getColumn(1).setPreferredWidth(50);
                     columnModel.getColumn(2).setPreferredWidth(50);
                     columnModel.getColumn(3).setPreferredWidth(50);
-                    columnModel.getColumn(4).setPreferredWidth(100);
-                    columnModel.getColumn(5).setPreferredWidth(100);
-                    columnModel.getColumn(6).setPreferredWidth(120);
+                    columnModel.getColumn(4).setPreferredWidth(50);
+                    columnModel.getColumn(5).setPreferredWidth(50);
+                    columnModel.getColumn(6).setPreferredWidth(90);
+                    columnModel.getColumn(7).setPreferredWidth(30);
+                    columnModel.getColumn(8).setPreferredWidth(30);
                     mom.desconectar();
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe aceptar la eliminación");
@@ -105,14 +107,20 @@ public class Controlador_compras implements ActionListener {
             vis1.JS1.setVisible(true);
             vis1.JS2.setVisible(true);
             vis1.CrearP.setVisible(true);
+            vis1.JS5.setVisible(true);
+            vis1.JS6.setVisible(true);
+            vis1.Lrotura.setVisible(true);
+            vis1.Trotura.setVisible(true);
+            vis1.Lmanchado.setVisible(true);
+            vis1.Tmanchado.setVisible(true);
             vis1.Logo.setVisible(false);
             vis1.Opciones.setVisible(false);
             vis1.Cfecha.setVisible(false);
             vis1.Cnproducto.setVisible(false);
             vis1.BuscarP.setVisible(false);
-            
+
             vis1.Cnproducto.setModel(mom.combo_proc());
-        vis1.Cproveedor.setModel(mom.combo_prove());
+            vis1.Cproveedor.setModel(mom.combo_prove());
         }
         if (e.getSource() == vis1.Cproductos) {
             contacto1 = huevos22.BD_huevos.getConexion();
@@ -154,13 +162,13 @@ public class Controlador_compras implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Campos Vacios");
             } else {
 
-                int v = this.mom.Agre_Com(Integer.parseInt(vis1.TId_proveeedor.getText()), Integer.parseInt(vis1.Tcantidad.getText()), Integer.parseInt(vis1.Tprecio.getText()), Integer.parseInt(vis1.TId_proveeedor1.getText()));
+                int v = this.mom.Agre_Com(Integer.parseInt(vis1.TId_proveeedor.getText()), Integer.parseInt(vis1.Tcantidad.getText()), Integer.parseInt(vis1.Tprecio.getText()), Integer.parseInt(vis1.TId_proveeedor1.getText()), Integer.parseInt(vis1.Trotura.getText()), Integer.parseInt(vis1.Tmanchado.getText()));
                 if (v == 0) {
                     JOptionPane.showMessageDialog(null, "No Guardado", "Informacion", 0);
                 } else {
                     limpiarcampos();
                     vis1.Cnproducto.setModel(mom.combo_proc());
-        vis1.Cproveedor.setModel(mom.combo_prove());
+                    vis1.Cproveedor.setModel(mom.combo_prove());
                     vis1.Cproductos.setModel(mom.Combo_Productos());
                     vis1.Cprobe.setModel(mom.Combo_nombreProveedor());
                     JOptionPane.showMessageDialog(null, "Compra Registrada", "Información", 1);
@@ -174,9 +182,11 @@ public class Controlador_compras implements ActionListener {
                     columnModel.getColumn(1).setPreferredWidth(50);
                     columnModel.getColumn(2).setPreferredWidth(50);
                     columnModel.getColumn(3).setPreferredWidth(50);
-                    columnModel.getColumn(4).setPreferredWidth(100);
-                    columnModel.getColumn(5).setPreferredWidth(100);
-                    columnModel.getColumn(6).setPreferredWidth(120);
+                    columnModel.getColumn(4).setPreferredWidth(50);
+                    columnModel.getColumn(5).setPreferredWidth(50);
+                    columnModel.getColumn(6).setPreferredWidth(90);
+                    columnModel.getColumn(7).setPreferredWidth(30);
+                    columnModel.getColumn(8).setPreferredWidth(30);
                     mom.desconectar();
                 }
 
@@ -192,19 +202,25 @@ public class Controlador_compras implements ActionListener {
             vis1.Tcantidad.setVisible(false);
             vis1.Tprecio.setVisible(false);
             vis1.Cproveedor.setVisible(false);
-              vis1.Cprobe.setVisible(false);
+            vis1.Cprobe.setVisible(false);
             vis1.Cproductos.setVisible(false);
             vis1.JS1.setVisible(false);
             vis1.JS2.setVisible(false);
             vis1.CrearP.setVisible(false);
+            vis1.JS5.setVisible(false);
+            vis1.JS6.setVisible(false);
+            vis1.Lrotura.setVisible(false);
+            vis1.Trotura.setVisible(false);
+            vis1.Lmanchado.setVisible(false);
+            vis1.Tmanchado.setVisible(false);
             vis1.Logo.setVisible(true);
             vis1.Opciones.setVisible(true);
             vis1.BuscarP.setVisible(true);
             vis1.BuscarP.setVisible(true);
-          
-           vis1.Cfecha.setModel(mom.combo_fechac());
-        vis1.Cproductos.setModel(mom.Combo_Productos());
-        vis1.Cprobe.setModel(mom.Combo_nombreProveedor());
+
+            vis1.Cfecha.setModel(mom.combo_fechac());
+            vis1.Cproductos.setModel(mom.Combo_Productos());
+            vis1.Cprobe.setModel(mom.Combo_nombreProveedor());
 
         }
 
@@ -242,20 +258,22 @@ public class Controlador_compras implements ActionListener {
                 vis1.tablac.setModel(this.mom.Buscar_compras(vis1.Cnproducto.getSelectedItem().toString(), vis1.Opciones.getSelectedIndex()));
                 TableColumnModel columnModel = vis1.tablac.getColumnModel();
 
-                columnModel.getColumn(0).setPreferredWidth(30);
-                columnModel.getColumn(1).setPreferredWidth(80);
-                columnModel.getColumn(2).setPreferredWidth(70);
-                columnModel.getColumn(3).setPreferredWidth(70);
-                columnModel.getColumn(4).setPreferredWidth(80);
-                columnModel.getColumn(5).setPreferredWidth(80);
-                columnModel.getColumn(6).setPreferredWidth(100);
-                
+                columnModel.getColumn(0).setPreferredWidth(20);
+                columnModel.getColumn(1).setPreferredWidth(50);
+                columnModel.getColumn(2).setPreferredWidth(50);
+                columnModel.getColumn(3).setPreferredWidth(50);
+                columnModel.getColumn(4).setPreferredWidth(50);
+                columnModel.getColumn(5).setPreferredWidth(50);
+                columnModel.getColumn(6).setPreferredWidth(90);
+                columnModel.getColumn(7).setPreferredWidth(30);
+                columnModel.getColumn(8).setPreferredWidth(30);
+
                 if (this.vis1.Cnproducto.getSelectedIndex() == 0) {
                     JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA OPCIÓN", "SIN SELECCIÓN", 0);
                     mom.desconectar();
                 }
-                 vis1.Cnproducto.setModel(mom.combo_proc());
-     
+                vis1.Cnproducto.setModel(mom.combo_proc());
+
             }
 
             if (vis1.Opciones.getSelectedIndex() == 2) {
@@ -264,21 +282,23 @@ public class Controlador_compras implements ActionListener {
                 vis1.tablac.setModel(this.mom.Buscar_compras(vis1.Cproveedor.getSelectedItem().toString(), vis1.Opciones.getSelectedIndex()));
                 TableColumnModel columnModel = vis1.tablac.getColumnModel();
 
-                columnModel.getColumn(0).setPreferredWidth(30);
-                columnModel.getColumn(1).setPreferredWidth(80);
-                columnModel.getColumn(2).setPreferredWidth(70);
-                columnModel.getColumn(3).setPreferredWidth(70);
-                columnModel.getColumn(4).setPreferredWidth(80);
-                columnModel.getColumn(5).setPreferredWidth(80);
-                columnModel.getColumn(6).setPreferredWidth(100);
-              
+                columnModel.getColumn(0).setPreferredWidth(20);
+                columnModel.getColumn(1).setPreferredWidth(50);
+                columnModel.getColumn(2).setPreferredWidth(50);
+                columnModel.getColumn(3).setPreferredWidth(50);
+                columnModel.getColumn(4).setPreferredWidth(50);
+                columnModel.getColumn(5).setPreferredWidth(50);
+                columnModel.getColumn(6).setPreferredWidth(90);
+                columnModel.getColumn(7).setPreferredWidth(30);
+                columnModel.getColumn(8).setPreferredWidth(30);
+
                 if (this.vis1.Cproveedor.getSelectedIndex() == 0) {
                     JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA OPCIÓN", "SIN SELECCIÓN", 0);
                     mom.desconectar();
                 }
-              
-                   vis1.Cproveedor.setModel(mom.combo_prove());
-        
+
+                vis1.Cproveedor.setModel(mom.combo_prove());
+
             }
 
             if (vis1.Opciones.getSelectedIndex() == 3) {
@@ -287,20 +307,21 @@ public class Controlador_compras implements ActionListener {
                 vis1.tablac.setModel(this.mom.Buscar_compras(vis1.Cfecha.getSelectedItem().toString(), vis1.Opciones.getSelectedIndex()));
                 TableColumnModel columnModel = vis1.tablac.getColumnModel();
 
-                columnModel.getColumn(0).setPreferredWidth(30);
-                columnModel.getColumn(1).setPreferredWidth(80);
-                columnModel.getColumn(2).setPreferredWidth(70);
-                columnModel.getColumn(3).setPreferredWidth(70);
-                columnModel.getColumn(4).setPreferredWidth(80);
-                columnModel.getColumn(5).setPreferredWidth(80);
-                columnModel.getColumn(6).setPreferredWidth(100);
-              
+                columnModel.getColumn(0).setPreferredWidth(20);
+                columnModel.getColumn(1).setPreferredWidth(50);
+                columnModel.getColumn(2).setPreferredWidth(50);
+                columnModel.getColumn(3).setPreferredWidth(50);
+                columnModel.getColumn(4).setPreferredWidth(50);
+                columnModel.getColumn(5).setPreferredWidth(50);
+                columnModel.getColumn(6).setPreferredWidth(90);
+                columnModel.getColumn(7).setPreferredWidth(30);
+                columnModel.getColumn(8).setPreferredWidth(30);
                 if (this.vis1.Cfecha.getSelectedIndex() == 0) {
                     JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR UNA OPCIÓN", "SIN SELECCIÓN", 0);
                     mom.desconectar();
                 }
-                  
-               vis1.Cfecha.setModel(mom.combo_fechac());
+
+                vis1.Cfecha.setModel(mom.combo_fechac());
             }
         }
 
@@ -328,9 +349,11 @@ public class Controlador_compras implements ActionListener {
             columnModel.getColumn(1).setPreferredWidth(50);
             columnModel.getColumn(2).setPreferredWidth(50);
             columnModel.getColumn(3).setPreferredWidth(50);
-            columnModel.getColumn(4).setPreferredWidth(100);
-            columnModel.getColumn(5).setPreferredWidth(100);
-            columnModel.getColumn(6).setPreferredWidth(120);
+            columnModel.getColumn(4).setPreferredWidth(50);
+            columnModel.getColumn(5).setPreferredWidth(50);
+            columnModel.getColumn(6).setPreferredWidth(90);
+            columnModel.getColumn(7).setPreferredWidth(30);
+            columnModel.getColumn(8).setPreferredWidth(30);
 
             mom.desconectar();
         }
