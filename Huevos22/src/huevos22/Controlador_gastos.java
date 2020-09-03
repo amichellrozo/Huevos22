@@ -69,7 +69,9 @@ public class Controlador_gastos implements ActionListener {
                 model = mom.Lista_gastos();
                 vis1.tablac.setModel(model);
                 TableColumnModel columnModel = vis1.tablac.getColumnModel();
-
+                vis1.Cproductos.setSelectedIndex(0);
+                vis1.Tcantidad.setText("");
+                vis1.Tprecio.setText("");
                 mom.desconectar();
             } else {
                 JOptionPane.showMessageDialog(null, "Gasto No Actulizado");
