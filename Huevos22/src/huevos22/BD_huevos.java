@@ -1336,7 +1336,7 @@ public class BD_huevos {
         DefaultTableModel modelo = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                if (column == 5) {
+                if (column == 6) {
                     return true;
                 } else {
                     return false;
@@ -1354,7 +1354,7 @@ public class BD_huevos {
             int canCol = rmsd.getColumnCount();
             canCol += 1;
             for (int i = 1; i < canCol; i++) {
-                String title[] = {"", "ID Gasto", "Nombre Gasto", "Descripción Gasto", "Valor"};
+                String title[] = {"", "ID Gasto", "Nombre Gasto", "Descripción Gasto", "Valor","Fecha"};
                 modelo.addColumn(title[i]);
             }
             canCol = canCol - 1;

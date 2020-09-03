@@ -41,7 +41,7 @@ public class Controlador_gastos implements ActionListener {
         vis1.ActualizarP.addActionListener(this);
         //.Cnproducto.setModel(mom.combo_proc());
         // vis1.Cproveedor.setModel(mom.combo_prove());
-        vis1.Cfecha.setModel(mom.combo_fechac());
+//        vis1.Cfecha.setModel(mom.combo_fechac());
         vis1.Cproductos.setModel(mom.combo_tipogasto());
     }
 

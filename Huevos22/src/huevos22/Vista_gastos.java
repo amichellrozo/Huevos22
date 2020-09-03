@@ -165,12 +165,7 @@ public class Vista_gastos extends JFrame {
         CrearP.setFont(fuente2);
         Panel1.add(CrearP);
 
-        Bginforme = new JButton("OBTENER GASTOS");
-        Bginforme.setBounds(280, 110, 220, 45);
-        Bginforme.setBackground(color1);
-        Bginforme.setForeground(negro);
-        Bginforme.setFont(fuente2);
-        Panel1.add(Bginforme);
+       
 
         ActualizarP = new JButton("Actualizar Gasto");
         ActualizarP.setBounds(130, 490, 190, 50);
@@ -198,11 +193,7 @@ public class Vista_gastos extends JFrame {
         LCantidad.setFont(fuente2);
         LCantidad.setForeground(color2);
 
-        Lunid = new JLabel("Uds");
-        Lunid.setBounds(280, 410, 50, 50);
-        Lunid.setFont(fuente2);
-        Lunid.setForeground(color2);
-        Panel1.add(Lunid);
+        
 
         Tcantidad = new JTextField("");
         Tcantidad.setBounds(80, 320, 190, 27);
@@ -322,7 +313,7 @@ public class Vista_gastos extends JFrame {
         cfecha.setFont(fuente2);
         cfecha.setBorder(new LineBorder(color1));
         cfecha.setForeground(color2);
-        cfecha.setBounds(170, 50, 200, 50);
+        cfecha.setBounds(100, 120, 200, 50);
         Panel2.add(cfecha);
 
         cfecha1 = new JComboBox();
@@ -331,11 +322,18 @@ public class Vista_gastos extends JFrame {
         cfecha1.setFont(fuente2);
         cfecha1.setBorder(new LineBorder(color1));
         cfecha1.setForeground(color2);
-        cfecha1.setBounds(520, 50, 200, 50);
+        cfecha1.setBounds(360, 120, 200, 50);
         Panel2.add(cfecha1);
+        
+         Bginforme = new JButton(" GASTOS");
+        Bginforme.setBounds(600, 120, 180, 45);
+        Bginforme.setBackground(color1);
+        Bginforme.setForeground(negro);
+        Bginforme.setFont(fuente2);
+        Panel1.add(Bginforme);
 
         BuscarP = new JButton("Buscar compra");
-        BuscarP.setBounds(140, 580, 180, 50);
+        BuscarP.setBounds(140, 110, 180, 50);
         BuscarP.setBackground(color1);
         BuscarP.setForeground(color2);
         BuscarP.setFont(fuente2);
@@ -355,7 +353,6 @@ public class Vista_gastos extends JFrame {
         LProduto.setVisible(false);
         LCantidad.setVisible(false);
         Lprecio.setVisible(false);
-        Lunid.setVisible(false);
         Lpeso.setVisible(false);
         Tcantidad.setVisible(false);
         Tprecio.setVisible(false);
@@ -371,9 +368,9 @@ public class Vista_gastos extends JFrame {
         BuscarP.setVisible(false);
         Opciones1.setVisible(false);
         ActualizarP.setVisible(false);
-        Bginforme.setVisible(false);
-        cfecha.setVisible(false);
-        cfecha1.setVisible(false);
+//        Bginforme.setVisible(false);
+       // cfecha.setVisible(false);
+      //  cfecha1.setVisible(false);
 
         Panel2.add(ActualizarB);
         Panel1.add(Titulo);
