@@ -32,7 +32,7 @@ public class Vista_gastos extends JFrame {
     JTextField Tcantidad, Tprecio, TId_proveeedor, TId_proveeedor1;
     JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ListaB, Mostrar, ActualizarC, ActualizarP, BuscarP, ActualizarB, Bginforme, Binforme;
     ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ListaI, imagen, ActualizarI, iginforme, iinforme;
-    JSeparator JS1, JS2, JS3, JS4;
+    JSeparator JS1, JS2, JS3, JS4,JS5;
     JTable tablac;
     JScrollPane panel;
     Border thickBorder = new LineBorder(Color.white, 2);
