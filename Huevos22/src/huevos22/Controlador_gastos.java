@@ -38,16 +38,15 @@ public class Controlador_gastos implements ActionListener {
         vis1.BuscarP.addActionListener(this);
         vis1.ListaB.addActionListener(this);
         vis1.ActualizarB.addActionListener(this);
-        // vis1.Cnproducto.setModel(mom.combo_proc());
+        //.Cnproducto.setModel(mom.combo_proc());
         // vis1.Cproveedor.setModel(mom.combo_prove());
         vis1.Cfecha.setModel(mom.combo_fechac());
-        // vis1.Cproductos.setModel(mom.Combo_Productos());
+        vis1.Cproductos.setModel(mom.combo_tipogasto());
     }
 
     public void limpiarcampos() {
         vis1.Tprecio.setText("");
         vis1.Tcantidad.setText("");
-        vis1.Cprobe.removeAllItems();
         vis1.Cproductos.removeAllItems();
         vis1.Cnproducto.removeAllItems();
         vis1.Cproveedor.removeAllItems();
@@ -128,7 +127,7 @@ public class Controlador_gastos implements ActionListener {
             vis1.Opciones1.setVisible(false);
             vis1.ActualizarP.setVisible(false);
 
-            vis1.Cnproducto.setModel(mom.combo_proc());
+            vis1.Cproductos.setModel(mom.combo_tipogasto());
             vis1.Cproveedor.setModel(mom.combo_prove());
         }
 //        if (e.getSource() == vis1.Cproductos) {
@@ -167,34 +166,32 @@ public class Controlador_gastos implements ActionListener {
 //        }
         if (e.getSource() == vis1.CrearP) {
             contacto1 = huevos22.BD_huevos.getConexion();
-            if (vis1.Cproductos.getSelectedIndex() == 0 || vis1.Tcantidad.getText().isEmpty() || vis1.Tprecio.getText().isEmpty() || vis1.Cprobe.getSelectedIndex() == 0) { // si estos coampos no estan llenos
+            if (vis1.Cproductos.getSelectedIndex() == 0 || vis1.Tcantidad.getText().isEmpty() || vis1.Tprecio.getText().isEmpty()) { // si estos coampos no estan llenos
                 JOptionPane.showMessageDialog(null, "Campos Vacios");
             } else {
 
-                int v = this.mom.Agre_Com(Integer.parseInt(vis1.TId_proveeedor.getText()), Integer.parseInt(vis1.Tcantidad.getText()), Integer.parseInt(vis1.Tprecio.getText()), Integer.parseInt(vis1.TId_proveeedor1.getText()));
+                int v = this.mom.Agre_gastos(vis1.Cproductos.getSelectedItem().toString(),vis1.Tcantidad.getText(),Integer.parseInt(vis1.Tprecio.getText()));
                 if (v == 0) {
                     JOptionPane.showMessageDialog(null, "No Guardado", "Informacion", 0);
                 } else {
-                    limpiarcampos();
-                    vis1.Cnproducto.setModel(mom.combo_proc());
-                    vis1.Cproveedor.setModel(mom.combo_prove());
+                    limpiarcampos();                                        
                     vis1.Cproductos.setModel(mom.Combo_Productos());
-                    vis1.Cprobe.setModel(mom.Combo_nombreProveedor());
-                    JOptionPane.showMessageDialog(null, "Compra Registrada", "Información", 1);
-                    contacto1 = huevos22.BD_huevos.getConexion();
-                    DefaultTableModel model = new DefaultTableModel();
-                    model = mom.Lista_compras();
-                    vis1.tablac.setModel(model);
-                    TableColumnModel columnModel = vis1.tablac.getColumnModel();
-
-                    columnModel.getColumn(0).setPreferredWidth(20);
-                    columnModel.getColumn(1).setPreferredWidth(50);
-                    columnModel.getColumn(2).setPreferredWidth(50);
-                    columnModel.getColumn(3).setPreferredWidth(50);
-                    columnModel.getColumn(4).setPreferredWidth(100);
-                    columnModel.getColumn(5).setPreferredWidth(100);
-                    columnModel.getColumn(6).setPreferredWidth(120);
-                    mom.desconectar();
+                    
+                    JOptionPane.showMessageDialog(null, "Gasto Registrado", "Información", 1);
+//                    contacto1 = huevos22.BD_huevos.getConexion();
+//                    DefaultTableModel model = new DefaultTableModel();
+//                    model = mom.Lista_compras();
+//                    vis1.tablac.setModel(model);
+//                    TableColumnModel columnModel = vis1.tablac.getColumnModel();
+//
+//                    columnModel.getColumn(0).setPreferredWidth(20);
+//                    columnModel.getColumn(1).setPreferredWidth(50);
+//                    columnModel.getColumn(2).setPreferredWidth(50);
+//                    columnModel.getColumn(3).setPreferredWidth(50);
+//                    columnModel.getColumn(4).setPreferredWidth(100);
+//                    columnModel.getColumn(5).setPreferredWidth(100);
+//                    columnModel.getColumn(6).setPreferredWidth(120);
+//                    mom.desconectar();
                 }
 
             }

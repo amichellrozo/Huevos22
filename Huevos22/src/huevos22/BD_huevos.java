@@ -978,7 +978,7 @@ public class BD_huevos {
     public DefaultComboBoxModel Combo_Productos() {
         DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
         listaModelo.addElement("Seleccione");
-        ResultSet res = this.Consulta("select nombre_producto from Producto where nombre_producto='AA' ");
+        ResultSet res = this.Consulta("select nombre_producto from Producto");
         try {
             while (res.next()) {
                 listaModelo.addElement(res.getString("nombre_producto"));
@@ -1293,5 +1293,82 @@ public class BD_huevos {
         }
         return modelo;
     }
+    /////////////////////////////////////
 
+    public int Agre_gastos(String Nombre_gasto, String Descripcion_gasto, int Costo_gasto) {
+        int estado;
+        try {
+
+            PreparedStatement st = contacto.prepareStatement("insert Gasto (Nombre_gasto,Descripcion_gasto,Costo_gasto) values (?,?,?)");
+            st.setString(1, Nombre_gasto);
+            st.setString(2, Descripcion_gasto);
+            st.setInt(3, Costo_gasto);
+
+            st.execute();
+            estado = 1;
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            estado = 0;
+        }
+
+        return estado;
+    }
+    //////////////////Combo tipo gastos
+
+    public DefaultComboBoxModel combo_tipogasto() {
+        DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+        listaModelo.addElement("Seleccione");
+        ResultSet res = this.Consulta("select * from Tipo_gasto");
+        try {
+            while (res.next()) {
+                listaModelo.addElement(res.getString("Nombre_tipogasto"));
+            }
+            res.close();
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+        }
+        return listaModelo;
+    }
+
+    public DefaultTableModel Lista_gastos() {
+
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if (column == 5) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        };
+        ResultSet result;
+        try {
+
+            PreparedStatement st = contacto.prepareStatement("select * from Gasto ");
+
+            result = st.executeQuery();
+            ResultSetMetaData rmsd = result.getMetaData();
+            int canCol = rmsd.getColumnCount();
+            canCol += 1;
+            for (int i = 1; i < canCol; i++) {
+                String title[] = {"", "ID Gasto", "Nombre Gasto", "Descripcioón Gasto", "Valor"};
+                modelo.addColumn(title[i]);
+            }
+            canCol = canCol - 1;
+            while (result.next()) {
+                Object[] fila = new Object[canCol];
+                for (int i = 0; i < canCol; i++) {
+                    fila[i] = result.getObject(i + 1);
+                }
+
+                modelo.addRow(fila);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return modelo;
+    }
 }
