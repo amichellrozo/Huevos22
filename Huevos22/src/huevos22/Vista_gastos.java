@@ -30,13 +30,13 @@ public class Vista_gastos extends JFrame {
     JPanel Panel1, Panel2;
     JLabel Titulo, LProduto, LCantidad, Lprecio, Lcliente, Lunid, Lpeso, Logo, Lidc;
     JTextField Tcantidad, Tprecio, TId_proveeedor, TId_proveeedor1;
-    JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ListaB, Mostrar, ActualizarC,ActualizarP, BuscarP, ActualizarB;
-    ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ListaI, imagen, ActualizarI;
+    JButton CerrarB, MinimizarB, BCrear, BEliminar, CrearP, volver, ListaB, Mostrar, ActualizarC, ActualizarP, BuscarP, ActualizarB, Bginforme, Binforme;
+    ImageIcon Cerrar, Minimizar, ICrear, IEliminar, VolverI, ListaI, imagen, ActualizarI, iginforme, iinforme;
     JSeparator JS1, JS2, JS3, JS4;
     JTable tablac;
     JScrollPane panel;
     Border thickBorder = new LineBorder(Color.white, 2);
-    JComboBox Opciones, Opciones1, Cproductos, Cfecha, Cproveedor, Cnproducto, Cprobe;
+    JComboBox Opciones, Opciones1, Cproductos, Cfecha, Cproveedor, Cnproducto, Cprobe, cfecha, cfecha1;
     String Titulos[] = {"Nombre", "Apellido", "Edad"};
     Font fuente1 = new Font("Microsoft JhengHei Light", Font.PLAIN, 50);
     Font fuente2 = new Font("Microsoft JhengHei Light", Font.PLAIN, 18);
@@ -94,32 +94,52 @@ public class Vista_gastos extends JFrame {
         CerrarB.setBounds(400, 10, 35, 35);
         MinimizarB.setBounds(365, 10, 35, 35);
 
-        BCrear = new JButton(Cerrar);
+        BCrear = new JButton(ICrear);
         BCrear.setContentAreaFilled(false);
         BCrear.setBorderPainted(false);
         ICrear = new ImageIcon("user.png");
-        BCrear.setToolTipText("ESTA OPCIÓN PERMITE CREAR UNA COMRPA");
+        BCrear.setToolTipText("ESTA OPCIÓN PERMITE CREAR UN GASTO");
         ImageIcon p = new ImageIcon(ICrear.getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_DEFAULT));
         BCrear.setIcon(p);
-        BCrear.setBounds(110, 30, 80, 80);
+        BCrear.setBounds(50, 30, 80, 80);
 
-        BEliminar = new JButton(Cerrar);
+        BEliminar = new JButton(IEliminar);
         BEliminar.setContentAreaFilled(false);
         BEliminar.setBorderPainted(false);
         IEliminar = new ImageIcon("eliminar.png");
-        BEliminar.setToolTipText("ESTA OPCIÓN PERMITE ELIMINAR UNA COMPRA");
+        BEliminar.setToolTipText("ESTA OPCIÓN PERMITE ELIMINAR UN GASTO");
         ImageIcon pf = new ImageIcon(IEliminar.getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_DEFAULT));
         BEliminar.setIcon(pf);
-        BEliminar.setBounds(270, 25, 80, 80);
+        BEliminar.setBounds(210, 25, 80, 80);
 
-        ListaB = new JButton(Cerrar);
+        ActualizarB = new JButton(Cerrar);
+        ActualizarB.setContentAreaFilled(false);
+        ActualizarB.setBorderPainted(false);
+        ActualizarI = new ImageIcon("actualizar.png");
+        ActualizarB.setToolTipText("ESTA OPCIÓN PERMITE ACTUALIZAR UN GASTO");
+        ImageIcon pfe = new ImageIcon(ActualizarI.getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_DEFAULT));
+        ActualizarB.setIcon(pfe);
+
+        ActualizarB.setBounds(370, 25, 80, 80);
+
+        ListaB = new JButton(ListaI);
         ListaB.setContentAreaFilled(false);
         ListaB.setBorderPainted(false);
         ListaI = new ImageIcon("lista.png");
-        ListaB.setToolTipText("ESTA OPCIÓN PERMITE LISTAR TODOS LAS COMPRA");
+        ListaB.setToolTipText("ESTA OPCIÓN PERMITE BUSCAR TODOS LOS GASTO");
         ImageIcon pfee = new ImageIcon(ListaI.getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_DEFAULT));
         ListaB.setIcon(pfee);
-        ListaB.setBounds(590, 25, 80, 80);
+        ListaB.setBounds(530, 25, 80, 80);
+
+        Binforme = new JButton(iinforme);
+        Binforme.setContentAreaFilled(false);
+        Binforme.setBorderPainted(false);
+        iinforme = new ImageIcon("reporte.png");
+        Binforme.setToolTipText("ESTA OPCIÓN PERMITE ELIMINAR UN GASTO");
+        ImageIcon ii = new ImageIcon(iinforme.getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_DEFAULT));
+        Binforme.setIcon(ii);
+        Binforme.setBounds(690, 25, 80, 80);
+
         TId_proveeedor = new JTextField("");
         TId_proveeedor.setBounds(130, 600, 240, 27);
         TId_proveeedor.setFont(fuente2);
@@ -144,6 +164,13 @@ public class Vista_gastos extends JFrame {
         CrearP.setForeground(negro);
         CrearP.setFont(fuente2);
         Panel1.add(CrearP);
+
+        Bginforme = new JButton("OBTENER GASTOS");
+        Bginforme.setBounds(280, 110, 220, 45);
+        Bginforme.setBackground(color1);
+        Bginforme.setForeground(negro);
+        Bginforme.setFont(fuente2);
+        Panel1.add(Bginforme);
 
         ActualizarP = new JButton("Actualizar Gasto");
         ActualizarP.setBounds(130, 490, 190, 50);
@@ -218,16 +245,6 @@ public class Vista_gastos extends JFrame {
         JS1.setBounds(90, 447, 190, 30);
         Panel1.add(JS1);
 
-        ActualizarB = new JButton(Cerrar);
-        ActualizarB.setContentAreaFilled(false);
-        ActualizarB.setBorderPainted(false);
-        ActualizarI = new ImageIcon("actualizar.png");
-        ActualizarB.setToolTipText("ESTA OPCIÓN PERMITE ACTUALIZAR UN CLIENTES");
-        ImageIcon pfe = new ImageIcon(ActualizarI.getImage().getScaledInstance(80, 80, java.awt.Image.SCALE_DEFAULT));
-        ActualizarB.setIcon(pfe);
-
-        ActualizarB.setBounds(430, 25, 80, 80);
-
         Mostrar = new JButton("MOSTRAR TODO");
         Mostrar.setToolTipText("ESTA OPCIÓN LISTA LOS GASTOS");
         Mostrar.setForeground(color2);
@@ -299,6 +316,24 @@ public class Vista_gastos extends JFrame {
         Cfecha.setBounds(100, 190, 200, 50);
         Panel1.add(Cfecha);
 
+        cfecha = new JComboBox();
+        cfecha.setBackground(Color.white);
+        cfecha.setOpaque(false);
+        cfecha.setFont(fuente2);
+        cfecha.setBorder(new LineBorder(color1));
+        cfecha.setForeground(color2);
+        cfecha.setBounds(170, 50, 200, 50);
+        Panel2.add(cfecha);
+
+        cfecha1 = new JComboBox();
+        cfecha1.setBackground(Color.white);
+        cfecha1.setOpaque(false);
+        cfecha1.setFont(fuente2);
+        cfecha1.setBorder(new LineBorder(color1));
+        cfecha1.setForeground(color2);
+        cfecha1.setBounds(520, 50, 200, 50);
+        Panel2.add(cfecha1);
+
         BuscarP = new JButton("Buscar compra");
         BuscarP.setBounds(140, 580, 180, 50);
         BuscarP.setBackground(color1);
@@ -336,6 +371,9 @@ public class Vista_gastos extends JFrame {
         BuscarP.setVisible(false);
         Opciones1.setVisible(false);
         ActualizarP.setVisible(false);
+        Bginforme.setVisible(false);
+        cfecha.setVisible(false);
+        cfecha1.setVisible(false);
 
         Panel2.add(ActualizarB);
         Panel1.add(Titulo);
@@ -348,6 +386,8 @@ public class Vista_gastos extends JFrame {
         Panel1.add(MinimizarB);
         Panel2.add(BCrear);
         Panel2.add(BEliminar);
+        Panel2.add(Bginforme);
+        Panel2.add(Binforme);
 
         this.add(Panel2);
         this.add(Panel1);
