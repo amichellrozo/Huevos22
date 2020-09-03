@@ -978,7 +978,7 @@ public class BD_huevos {
     public DefaultComboBoxModel Combo_Productos() {
         DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
         listaModelo.addElement("Seleccione");
-        ResultSet res = this.Consulta("select * from Producto");
+        ResultSet res = this.Consulta("select nombre_producto from Producto where nombre_producto='AA' ");
         try {
             while (res.next()) {
                 listaModelo.addElement(res.getString("nombre_producto"));
